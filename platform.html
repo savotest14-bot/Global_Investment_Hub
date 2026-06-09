@@ -1,0 +1,2277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Platform — Global Investment Hub</title>
+  <meta name="description" content="Private member dashboard for capital allocation and investment management.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
+    rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body>
+
+  <div id="page-platform" class="page active">
+    <div class="platform-wrap">
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar" id="sidebar">
+        <a href="#" class="logo-link" onclick="setTab('dashboard'); return false;">
+          <div class="sidebar-brand">
+            <span class="sidebar-brand-name">Global Investment Hub</span>
+            <span class="sidebar-brand-sub">Private Platform</span>
+          </div>
+        </a>
+
+        <span class="sidebar-section-label">Overview</span>
+        <ul class="sidebar-nav">
+          <li><button class="active" onclick="setTab('dashboard')">
+              <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+              </svg>
+              Dashboard
+            </button></li>
+        </ul>
+
+        <span class="sidebar-section-label">Analytics</span>
+        <ul class="sidebar-nav">
+          <li><button onclick="setTab('analytics')">
+              <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+              </svg>
+              Performance
+            </button></li>
+          <li><button onclick="setTab('risk')">
+              <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+              Risk & Scenarios
+            </button></li>
+          <li><button onclick="setTab('liquidity')">
+              <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 2a10 10 0 0 0 0 20c5.52 0 10-4.48 10-10S17.52 2 12 2z" />
+                <path d="M12 6v6l4 2" />
+              </svg>
+              Liquidity
+            </button></li>
+          <li><button onclick="setTab('allocation')">
+              <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              Allocation
+            </button></li>
+          <li><button onclick="setTab('income')">
+              <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              </svg>
+              Income & Yield
+            </button></li>
+        </ul>
+
+        <span class="sidebar-section-label">Investments</span>
+        <ul class="sidebar-nav">
+          <li><button onclick="setTab('deals')">
+              <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M9 12h6m-3-3v6" />
+                <circle cx="12" cy="12" r="9" />
+              </svg>
+              Deal Catalogue
+            </button></li>
+          <li><button onclick="setTab('portfolio')">
+              <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <path d="M8 21h8m-4-4v4" />
+              </svg>
+              Portfolio
+            </button></li>
+          <li id="nav-origination-item" style="display:none;"><button onclick="setTab('origination')">
+              <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 20h9" />
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+              </svg>
+              Origination
+            </button></li>
+        </ul>
+
+        <span class="sidebar-section-label">Intelligence</span>
+        <ul class="sidebar-nav">
+          <li><button onclick="setTab('alerts')">
+              <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+              </svg>
+              Alerts
+            </button></li>
+          <li><button onclick="setTab('forecasting')">
+              <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 20h20M6 16l4-8 4 4 4-8" />
+              </svg>
+              Forecasting
+            </button></li>
+          <li><button onclick="setTab('tokenization')">
+              <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                <polyline points="2 17 12 22 22 17" />
+                <polyline points="2 12 12 17 22 12" />
+              </svg>
+              Tokenization
+            </button></li>
+          <li><button onclick="setTab('fees')">
+              <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+                <line x1="1" y1="10" x2="23" y2="10" />
+              </svg>
+              Fees & Costs
+            </button></li>
+        </ul>
+
+        <span class="sidebar-section-label">Reports</span>
+        <ul class="sidebar-nav">
+          <li><button onclick="setTab('reporting')">
+              <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+              </svg>
+              Reporting
+            </button></li>
+          <li><button onclick="setTab('entities')">
+              <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+              Multi-Entity
+            </button></li>
+        </ul>
+
+        <span class="sidebar-section-label">Collaboration</span>
+        <ul class="sidebar-nav">
+          <li><button onclick="setTab('members')">
+              <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="9" cy="7" r="4" />
+                <path d="M3 21v-2a4 4 0 0 1 4-4h4" />
+                <path d="M16 11l2 2 4-4" />
+              </svg>
+              Team Members
+            </button></li>
+          <li><button onclick="setTab('documents')">
+              <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+              </svg>
+              Documents
+            </button></li>
+          <li><button onclick="setTab('messages')">
+              <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 0 2 2z" />
+              </svg>
+              Messages
+            </button></li>
+          <li><button onclick="setTab('settings')">
+              <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="3" />
+                <path
+                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+              </svg>
+              Settings
+            </button></li>
+        </ul>
+
+        <div class="sidebar-bottom">
+          <div class="user-badge">
+            <div class="user-avatar" id="user-avatar">A</div>
+            <div class="user-info">
+              <div class="user-name" id="user-name">Member</div>
+              <div class="user-role-badge" id="user-role-badge">Loading...</div>
+            </div>
+          <button class="sidebar-logout-btn" onclick="handleLogout()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+            Sign Out
+          </button>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="main-content">
+        <div class="topbar">
+          <div class="topbar-breadcrumb">
+            <svg class="breadcrumb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;color:var(--gold);margin-right:2px;flex-shrink:0;">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            <span class="topbar-section">Platform</span>
+            <span class="topbar-sep">›</span>
+            <span class="topbar-page" id="topbar-page">Dashboard</span>
+          </div>
+          
+          <div class="topbar-search">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;color:var(--silver);flex-shrink:0;">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="text" placeholder="Quick search opportunities..." id="topbar-search-input" onkeyup="handleTopbarSearch(event)">
+          </div>
+
+          <div class="topbar-right">
+            <span class="topbar-date" id="topbar-date"></span>
+            
+            <div class="topbar-notif-wrapper">
+              <div class="topbar-notif-bell" onclick="toggleNotifDropdown(event)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;color:var(--silver);">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                </svg>
+                <span class="notif-badge" id="topbar-notif-badge">3</span>
+              </div>
+              <div class="topbar-notif-dropdown" id="notif-dropdown">
+                <div class="notif-dropdown-header">
+                  <span>Notifications</span>
+                  <button onclick="markAllNotificationsRead(event)">Clear all</button>
+                </div>
+                <div class="notif-dropdown-list">
+                  <div class="notif-dropdown-item unread" onclick="handleNotifClick('deals')">
+                    <div class="notif-item-dot"></div>
+                    <div class="notif-item-content">
+                      <div class="notif-item-text">New buyout opportunity: <strong>European Mid-Market Buyout IV</strong></div>
+                      <div class="notif-item-time">2 hours ago</div>
+                    </div>
+                  </div>
+                  <div class="notif-dropdown-item unread" onclick="handleNotifClick('documents')">
+                    <div class="notif-item-dot"></div>
+                    <div class="notif-item-content">
+                      <div class="notif-item-text">Q4 Strategy Review Memo published by Compliance</div>
+                      <div class="notif-item-time">Yesterday</div>
+                    </div>
+                  </div>
+                  <div class="notif-dropdown-item" onclick="handleNotifClick('alerts')">
+                    <div class="notif-item-dot"></div>
+                    <div class="notif-item-content">
+                      <div class="notif-item-text">Session verification: secure platform connection assigned</div>
+                      <div class="notif-item-time">3 days ago</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="topbar-profile-wrapper">
+              <div class="topbar-profile" onclick="toggleProfileDropdown(event)">
+                <span class="topbar-profile-name" id="topbar-profile-name">Member</span>
+                <div class="profile-avatar" id="topbar-avatar">M</div>
+              </div>
+              <div class="topbar-profile-dropdown" id="profile-dropdown">
+                <div class="profile-dropdown-header">
+                  <div class="profile-dropdown-name" id="profile-dropdown-name">Alexandra Vandenberg</div>
+                  <div class="profile-dropdown-role" id="profile-dropdown-role">Capital Allocator</div>
+                </div>
+                <div class="profile-dropdown-divider"></div>
+                <ul class="profile-dropdown-list">
+                  <li>
+                    <button onclick="setTab('settings'); closeProfileDropdown();">
+                      <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="3" />
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                      </svg>
+                      Settings
+                    </button>
+                  </li>
+                  <li>
+                    <button onclick="handleLogout()">
+                      <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                        <polyline points="16 17 21 12 16 7" />
+                        <line x1="21" y1="12" x2="9" y2="12" />
+                      </svg>
+                      Sign Out
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-content">
+
+          <!-- ── DASHBOARD TAB ── -->
+          <div class="dash-tab active" id="tab-dashboard">
+            <div class="alert-banner">
+              <div class="alert-dot"></div>
+              <div class="alert-text"><strong>New opportunity available:</strong> European Mid-Market Buyout Fund IV —
+                closing Q2 2025. Due diligence materials now accessible.</div>
+            </div>
+            <div class="dash-header">
+              <div class="dash-header-eyebrow" id="dash-welcome-eyebrow">Welcome back</div>
+              <h1 class="dash-header-title" id="dash-welcome-title">Member <em>Overview</em></h1>
+              <p class="dash-header-sub" id="dash-welcome-sub">Your private investment dashboard</p>
+            </div>
+            <div class="kpi-row" id="kpi-row"></div>
+            <div class="deals-grid" id="dash-deals"></div>
+            <div class="dash-two-col">
+              <div class="dash-panel">
+                <div class="dash-panel-title">Recent Activity</div>
+                <ul class="activity-list">
+                  <li class="activity-item">
+                    <div class="activity-dot"></div>
+                    <div>
+                      <div class="activity-text">New due diligence package received for <strong
+                          style="color:var(--ivory);">Alpine Credit Opportunities III</strong></div>
+                      <div class="activity-time">2 hours ago</div>
+                    </div>
+                  </li>
+                  <li class="activity-item">
+                    <div class="activity-dot"></div>
+                    <div>
+                      <div class="activity-text">Investment Committee memo published — Q4 Strategy Review</div>
+                      <div class="activity-time">Yesterday</div>
+                    </div>
+                  </li>
+                  <li class="activity-item">
+                    <div class="activity-dot"></div>
+                    <div>
+                      <div class="activity-text">Co-investment confirmation received for <strong
+                          style="color:var(--ivory);">Meridian PE Fund V</strong></div>
+                      <div class="activity-time">3 days ago</div>
+                    </div>
+                  </li>
+                  <li class="activity-item">
+                    <div class="activity-dot"></div>
+                    <div>
+                      <div class="activity-text">NDA countersigned and filed — Global HF Strategies GP</div>
+                      <div class="activity-time">5 days ago</div>
+                    </div>
+                  </li>
+                  <li class="activity-item">
+                    <div class="activity-dot"></div>
+                    <div>
+                      <div class="activity-text">Membership renewal confirmed for 2025 — documentation archived</div>
+                      <div class="activity-time">1 week ago</div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="dash-panel">
+                <div class="dash-panel-title">Quick Access</div>
+                <ul class="quick-list">
+                  <li class="quick-item" onclick="setTab('deals')"><span class="quick-label">Deal Catalogue</span><span
+                      class="quick-arrow">›</span></li>
+                  <li class="quick-item" onclick="setTab('analytics')"><span class="quick-label">Performance
+                      Analytics</span><span class="quick-arrow">›</span></li>
+                  <li class="quick-item" onclick="setTab('risk')"><span class="quick-label">Risk Dashboard</span><span
+                      class="quick-arrow">›</span></li>
+                  <li class="quick-item" onclick="setTab('liquidity')"><span class="quick-label">Liquidity
+                      Intelligence</span><span class="quick-arrow">›</span></li>
+                  <li class="quick-item" onclick="setTab('documents')"><span class="quick-label">Due Diligence
+                      Vault</span><span class="quick-arrow">›</span></li>
+                  <li class="quick-item" onclick="setTab('alerts')"><span class="quick-label">Alerts & Flags
+                      (5)</span><span class="quick-arrow">›</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── ANALYTICS TAB ── -->
+          <div class="dash-tab" id="tab-analytics">
+            <div class="dash-header">
+              <div class="dash-header-eyebrow">Performance Intelligence</div>
+              <h1 class="dash-header-title">Portfolio <em>Analytics</em></h1>
+              <p class="dash-header-sub">Multi-dimensional performance attribution · Benchmarking · P&L</p>
+            </div>
+
+            <!-- I. Portfolio Overview KPIs -->
+            <div class="metric-section-title">Portfolio Overview</div>
+            <div class="metric-section-sub">Core Balance Sheet Metrics</div>
+            <div class="kpi-row kpi-row-5">
+              <div class="kpi-card">
+                <div class="kpi-label">Net Asset Value</div>
+                <div class="kpi-value">€42.8M</div>
+                <div class="kpi-sub pos">+2.1% MTD</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Invested Capital</div>
+                <div class="kpi-value">€38.4M</div>
+                <div class="kpi-sub">Deployed</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Dry Powder</div>
+                <div class="kpi-value">€11.6M</div>
+                <div class="kpi-sub">Uninvested</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Total Commitments</div>
+                <div class="kpi-value">€50M</div>
+                <div class="kpi-sub">Across vehicles</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Total Distributions</div>
+                <div class="kpi-value">€4.2M</div>
+                <div class="kpi-sub pos">Received to date</div>
+              </div>
+            </div>
+
+            <!-- II. Performance Multi-Dimensional -->
+            <div class="metric-section-title">Performance Returns</div>
+            <div class="metric-section-sub">MTD · YTD · Since Inception · IRR · TWR · Net vs Gross</div>
+            <div class="metrics-grid-3">
+              <div class="m-panel">
+                <div class="m-panel-title">Period Returns <span class="badge">Gross / Net</span></div>
+                <div class="m-row"><span class="m-row-label">MTD Return</span><span class="m-row-value m-pos">+2.14% /
+                    +1.82%</span></div>
+                <div class="m-row"><span class="m-row-label">QTD Return</span><span class="m-row-value m-pos">+4.87% /
+                    +4.12%</span></div>
+                <div class="m-row"><span class="m-row-label">YTD Return</span><span class="m-row-value m-pos">+11.4% /
+                    +9.8%</span></div>
+                <div class="m-row"><span class="m-row-label">Since Inception</span><span
+                    class="m-row-value m-pos">+24.3%
+                    / +20.1%</span></div>
+                <div class="m-row"><span class="m-row-label">IRR (Money-Weighted)</span><span
+                    class="m-row-value m-gold">14.2%</span></div>
+                <div class="m-row"><span class="m-row-label">TWR (Time-Weighted)</span><span
+                    class="m-row-value m-gold">12.8%</span></div>
+                <div class="m-row"><span class="m-row-label">Fee Drag (Net Impact)</span><span
+                    class="m-row-value m-neg">-1.6%</span></div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Benchmarking <span class="badge">vs MSCI ACWI</span></div>
+                <div class="m-row"><span class="m-row-label">Portfolio YTD</span><span
+                    class="m-row-value m-pos">+11.4%</span></div>
+                <div class="m-row"><span class="m-row-label">Benchmark YTD</span><span class="m-row-value">+8.7%</span>
+                </div>
+                <div class="m-row"><span class="m-row-label">Alpha (Excess)</span><span
+                    class="m-row-value m-pos">+2.7%</span></div>
+                <div class="m-row"><span class="m-row-label">Portfolio SI</span><span
+                    class="m-row-value m-pos">+24.3%</span></div>
+                <div class="m-row"><span class="m-row-label">Benchmark SI</span><span class="m-row-value">+18.1%</span>
+                </div>
+                <div class="m-row"><span class="m-row-label">Alpha (SI)</span><span
+                    class="m-row-value m-pos">+6.2%</span>
+                </div>
+                <div class="m-row"><span class="m-row-label">Sharpe Ratio</span><span
+                    class="m-row-value m-gold">1.42</span></div>
+                <div class="m-row"><span class="m-row-label">Sortino Ratio</span><span
+                    class="m-row-value m-gold">1.87</span></div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">P&L Breakdown <span class="badge">YTD</span></div>
+                <div class="m-row"><span class="m-row-label">Realised Gains</span><span
+                    class="m-row-value m-pos">+€3.2M</span></div>
+                <div class="m-row"><span class="m-row-label">Unrealised Gains</span><span
+                    class="m-row-value m-pos">+€4.8M</span></div>
+                <div class="m-row"><span class="m-row-label">Income (Cash Yield)</span><span
+                    class="m-row-value m-pos">+€1.4M</span></div>
+                <div class="m-row"><span class="m-row-label">FX Gains / Losses</span><span
+                    class="m-row-value m-neg">-€0.3M</span></div>
+                <div class="m-row"><span class="m-row-label">Total Gross P&L</span><span
+                    class="m-row-value m-pos">+€9.1M</span></div>
+                <div class="m-row"><span class="m-row-label">Total Fees Paid</span><span
+                    class="m-row-value m-neg">-€0.82M</span></div>
+                <div class="m-row"><span class="m-row-label">Net P&L</span><span
+                    class="m-row-value m-pos">+€8.28M</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Performance Attribution Chart -->
+            <div class="metrics-grid-2">
+              <div class="m-panel">
+                <div class="m-panel-title">Return Contribution by Asset Class</div>
+                <div class="chart-container">
+                  <canvas id="chart-attribution-class"></canvas>
+                </div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Return Contribution by Geography</div>
+                <div class="chart-container">
+                  <canvas id="chart-attribution-geo"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- Strategy Attribution -->
+            <div class="m-panel" style="margin-bottom:48px;">
+              <div class="m-panel-title">Return Attribution by Strategy</div>
+              <div style="margin-top:8px;">
+                <div class="m-row">
+                  <span class="m-row-label">Income / Yield-focused</span>
+                  <div class="m-bar-wrap" style="min-width:200px;">
+                    <div class="m-bar-track">
+                      <div class="m-bar-fill m-bar-green" style="width:68%;"></div>
+                    </div>
+                    <span class="m-bar-pct m-pos">+4.8%</span>
+                  </div>
+                </div>
+                <div class="m-row">
+                  <span class="m-row-label">Capital Appreciation</span>
+                  <div class="m-bar-wrap" style="min-width:200px;">
+                    <div class="m-bar-track">
+                      <div class="m-bar-fill" style="width:82%;"></div>
+                    </div>
+                    <span class="m-bar-pct">+5.9%</span>
+                  </div>
+                </div>
+                <div class="m-row">
+                  <span class="m-row-label">Hybrid (Income + Growth)</span>
+                  <div class="m-bar-wrap" style="min-width:200px;">
+                    <div class="m-bar-track">
+                      <div class="m-bar-fill m-bar-blue" style="width:40%;"></div>
+                    </div>
+                    <span class="m-bar-pct" style="color:var(--blue);">+0.7%</span>
+                  </div>
+                </div>
+                <div class="m-row">
+                  <span class="m-row-label">FX Impact</span>
+                  <div class="m-bar-wrap" style="min-width:200px;">
+                    <div class="m-bar-track">
+                      <div class="m-bar-fill m-bar-red" style="width:20%;"></div>
+                    </div>
+                    <span class="m-bar-pct m-neg">-0.3%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Performance chart over time -->
+            <div class="m-panel" style="margin-bottom:48px;">
+              <div class="m-panel-title">Portfolio vs Benchmark — Since Inception <span class="badge">Monthly</span>
+              </div>
+              <div class="chart-container chart-container-tall">
+                <canvas id="chart-perf-time"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── RISK TAB ── -->
+          <div class="dash-tab" id="tab-risk">
+            <div class="dash-header">
+              <div class="dash-header-eyebrow">Risk Intelligence</div>
+              <h1 class="dash-header-title">Risk & <em>Scenarios</em></h1>
+              <p class="dash-header-sub">Concentration · Volatility · Downside Risk · Correlation · Stress Testing</p>
+            </div>
+
+            <!-- Concentration Risk -->
+            <div class="metric-section-title">Concentration Risk</div>
+            <div class="metric-section-sub">Top Exposures & Sector Concentration</div>
+            <div class="metrics-grid-4">
+              <div class="m-panel">
+                <div class="m-panel-title">Top 1 Exposure</div>
+                <div class="m-big">22.4%</div>
+                <div class="m-sub">of NAV — European Buyout IV</div><span class="m-tag m-tag-gold"
+                  style="margin-top:12px;display:inline-block;">Moderate</span>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Top 3 Exposure</div>
+                <div class="m-big">58.1%</div>
+                <div class="m-sub">of NAV — Three largest</div><span class="m-tag m-tag-gold"
+                  style="margin-top:12px;display:inline-block;">Elevated</span>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Top 5 Exposure</div>
+                <div class="m-big">84.3%</div>
+                <div class="m-sub">of NAV — Five largest</div><span class="m-tag m-tag-red"
+                  style="margin-top:12px;display:inline-block;">High</span>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Diversification Score</div>
+                <div class="m-big">6.4</div>
+                <div class="m-sub">out of 10 — Above peer avg</div><span class="m-tag m-tag-green"
+                  style="margin-top:12px;display:inline-block;">Good</span>
+              </div>
+            </div>
+
+            <!-- Volatility & Downside -->
+            <div class="metric-section-title">Volatility & Downside Risk</div>
+            <div class="metric-section-sub">Portfolio Stability · VaR · Maximum Drawdown</div>
+            <div class="metrics-grid-3">
+              <div class="m-panel">
+                <div class="m-panel-title">Volatility Metrics</div>
+                <div class="m-row"><span class="m-row-label">Portfolio Volatility (ann.)</span><span
+                    class="m-row-value">8.4%</span></div>
+                <div class="m-row"><span class="m-row-label">PE Sleeve Volatility</span><span
+                    class="m-row-value">12.1%</span></div>
+                <div class="m-row"><span class="m-row-label">HF Sleeve Volatility</span><span
+                    class="m-row-value">6.8%</span></div>
+                <div class="m-row"><span class="m-row-label">Credit Sleeve Volatility</span><span
+                    class="m-row-value">4.2%</span></div>
+                <div class="m-row"><span class="m-row-label">Stability Score (Illiquid)</span><span
+                    class="m-row-value m-gold">7.8/10</span></div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Downside Risk</div>
+                <div class="m-row"><span class="m-row-label">Maximum Drawdown (SI)</span><span
+                    class="m-row-value m-neg">-6.2%</span></div>
+                <div class="m-row"><span class="m-row-label">VaR (95%, 1-month)</span><span
+                    class="m-row-value m-neg">-2.8%</span></div>
+                <div class="m-row"><span class="m-row-label">VaR (99%, 1-month)</span><span
+                    class="m-row-value m-neg">-4.6%</span></div>
+                <div class="m-row"><span class="m-row-label">Expected Shortfall (CVaR)</span><span
+                    class="m-row-value m-neg">-5.1%</span></div>
+                <div class="m-row"><span class="m-row-label">Risk-Adj. Return Score</span><span
+                    class="m-row-value m-pos">8.2/10</span></div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Sector Concentration</div>
+                <div class="m-row"><span class="m-row-label">Financials</span>
+                  <div class="m-bar-wrap">
+                    <div class="m-bar-track">
+                      <div class="m-bar-fill" style="width:32%;"></div>
+                    </div><span class="m-bar-pct">32%</span>
+                  </div>
+                </div>
+                <div class="m-row"><span class="m-row-label">Technology</span>
+                  <div class="m-bar-wrap">
+                    <div class="m-bar-track">
+                      <div class="m-bar-fill" style="width:24%;"></div>
+                    </div><span class="m-bar-pct">24%</span>
+                  </div>
+                </div>
+                <div class="m-row"><span class="m-row-label">Infrastructure</span>
+                  <div class="m-bar-wrap">
+                    <div class="m-bar-track">
+                      <div class="m-bar-fill" style="width:18%;"></div>
+                    </div><span class="m-bar-pct">18%</span>
+                  </div>
+                </div>
+                <div class="m-row"><span class="m-row-label">Healthcare</span>
+                  <div class="m-bar-wrap">
+                    <div class="m-bar-track">
+                      <div class="m-bar-fill m-bar-blue" style="width:14%;"></div>
+                    </div><span class="m-bar-pct" style="color:var(--blue);">14%</span>
+                  </div>
+                </div>
+                <div class="m-row"><span class="m-row-label">Other</span>
+                  <div class="m-bar-wrap">
+                    <div class="m-bar-track">
+                      <div class="m-bar-fill m-bar-green" style="width:12%;"></div>
+                    </div><span class="m-bar-pct" style="color:var(--green);">12%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Correlation Matrix -->
+            <div class="m-panel" style="margin-bottom:48px;">
+              <div class="m-panel-title">Asset Class Correlation Matrix</div>
+              <div class="corr-matrix" style="grid-template-columns: 140px repeat(5, 1fr);">
+                <div class="corr-cell corr-header"></div>
+                <div class="corr-cell corr-header">PE</div>
+                <div class="corr-cell corr-header">Hedge Funds</div>
+                <div class="corr-cell corr-header">Credit</div>
+                <div class="corr-cell corr-header">Infra</div>
+                <div class="corr-cell corr-header">Cash</div>
+                <div class="corr-cell corr-header" style="text-align:left;padding-left:0;">Private Equity</div>
+                <div class="corr-cell corr-self">1.00</div>
+                <div class="corr-cell corr-med">0.42</div>
+                <div class="corr-cell corr-low">0.28</div>
+                <div class="corr-cell corr-low">0.31</div>
+                <div class="corr-cell corr-neg">-0.04</div>
+                <div class="corr-cell corr-header" style="text-align:left;padding-left:0;">Hedge Funds</div>
+                <div class="corr-cell corr-med">0.42</div>
+                <div class="corr-cell corr-self">1.00</div>
+                <div class="corr-cell corr-med">0.51</div>
+                <div class="corr-cell corr-low">0.19</div>
+                <div class="corr-cell corr-neg">-0.12</div>
+                <div class="corr-cell corr-header" style="text-align:left;padding-left:0;">Private Credit</div>
+                <div class="corr-cell corr-low">0.28</div>
+                <div class="corr-cell corr-med">0.51</div>
+                <div class="corr-cell corr-self">1.00</div>
+                <div class="corr-cell corr-low">0.22</div>
+                <div class="corr-cell corr-neg">-0.08</div>
+                <div class="corr-cell corr-header" style="text-align:left;padding-left:0;">Infrastructure</div>
+                <div class="corr-cell corr-low">0.31</div>
+                <div class="corr-cell corr-low">0.19</div>
+                <div class="corr-cell corr-low">0.22</div>
+                <div class="corr-cell corr-self">1.00</div>
+                <div class="corr-cell corr-neg">-0.02</div>
+                <div class="corr-cell corr-header" style="text-align:left;padding-left:0;">Cash / Dry Powder</div>
+                <div class="corr-cell corr-neg">-0.04</div>
+                <div class="corr-cell corr-neg">-0.12</div>
+                <div class="corr-cell corr-neg">-0.08</div>
+                <div class="corr-cell corr-neg">-0.02</div>
+                <div class="corr-cell corr-self">1.00</div>
+              </div>
+            </div>
+
+            <!-- Stress Scenarios -->
+            <div class="metric-section-title">Stress Scenarios</div>
+            <div class="metric-section-sub">Interest Rate Shock · Credit Spread Widening · Real Estate Downturn · Market
+              Stress</div>
+            <div class="m-panel" style="margin-bottom:48px;">
+              <div class="m-panel-title">Scenario Impact on Portfolio NAV</div>
+              <div style="margin-top:8px;">
+                <div class="scenario-row">
+                  <div class="scenario-label">Rate +200bps</div>
+                  <div class="scenario-bar-wrap">
+                    <div class="scenario-bar scenario-worst" style="width:18%;">-€7.7M</div>
+                    <div style="position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--iron);"></div>
+                  </div>
+                </div>
+                <div class="scenario-row">
+                  <div class="scenario-label">Credit Spread +300bps</div>
+                  <div class="scenario-bar-wrap">
+                    <div class="scenario-bar scenario-worst" style="width:12%;">-€5.1M</div>
+                    <div style="position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--iron);"></div>
+                  </div>
+                </div>
+                <div class="scenario-row">
+                  <div class="scenario-label">RE Downturn -25%</div>
+                  <div class="scenario-bar-wrap">
+                    <div class="scenario-bar scenario-worst" style="width:8%;">-€3.4M</div>
+                    <div style="position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--iron);"></div>
+                  </div>
+                </div>
+                <div class="scenario-row">
+                  <div class="scenario-label">Market Stress (2008)</div>
+                  <div class="scenario-bar-wrap">
+                    <div class="scenario-bar scenario-worst" style="width:28%;">-€12.0M</div>
+                    <div style="position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--iron);"></div>
+                  </div>
+                </div>
+                <div class="scenario-row">
+                  <div class="scenario-label">Inflation +5%</div>
+                  <div class="scenario-bar-wrap">
+                    <div class="scenario-bar scenario-worst" style="width:10%;">-€4.3M</div>
+                    <div style="position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--iron);"></div>
+                  </div>
+                </div>
+              </div>
+              <div style="font-size:9px;color:var(--iron);margin-top:16px;letter-spacing:0.1em;">Scenarios modelled
+                using proprietary factor analysis. Past stress events may not predict future losses.</div>
+            </div>
+          </div>
+
+          <!-- ── LIQUIDITY TAB ── -->
+          <div class="dash-tab" id="tab-liquidity">
+            <div class="dash-header">
+              <div class="dash-header-eyebrow">Liquidity Intelligence</div>
+              <h1 class="dash-header-title">Liquidity <em>Profile</em></h1>
+              <p class="dash-header-sub">Liquidity timeline · Exit conditions · Secondary market · Lock-up schedule</p>
+            </div>
+
+            <div class="metric-section-title">Liquidity Profile</div>
+            <div class="metric-section-sub">Portfolio Liquidity by Horizon</div>
+            <div class="liq-timeline">
+              <div class="liq-bucket liq-liquid">
+                <div class="liq-bucket-label">Liquid (&lt;30 days)</div>
+                <div class="liq-bucket-value">23%</div>
+                <div class="liq-bucket-sub">€9.8M</div>
+              </div>
+              <div class="liq-bucket liq-semi">
+                <div class="liq-bucket-label">Semi-Liquid (Quarterly)</div>
+                <div class="liq-bucket-value">31%</div>
+                <div class="liq-bucket-sub">€13.3M</div>
+              </div>
+              <div class="liq-bucket liq-illiquid">
+                <div class="liq-bucket-label">Illiquid (&gt;1 Year)</div>
+                <div class="liq-bucket-value">46%</div>
+                <div class="liq-bucket-sub">€19.7M</div>
+              </div>
+            </div>
+
+            <div class="metrics-grid-3" style="margin-top:48px;">
+              <div class="m-panel">
+                <div class="m-panel-title">Liquidity Timeline — Inflows</div>
+                <div class="m-row"><span class="m-row-label">Expected inflow (30d)</span><span
+                    class="m-row-value m-pos">€1.4M</span></div>
+                <div class="m-row"><span class="m-row-label">Expected inflow (90d)</span><span
+                    class="m-row-value m-pos">€3.8M</span></div>
+                <div class="m-row"><span class="m-row-label">Expected inflow (12mo)</span><span
+                    class="m-row-value m-pos">€11.2M</span></div>
+                <div class="m-row"><span class="m-row-label">Distributions (Next Q)</span><span
+                    class="m-row-value m-pos">€0.8M</span></div>
+                <div class="m-row"><span class="m-row-label">Capital Calls (Pending)</span><span
+                    class="m-row-value m-neg">-€2.1M</span></div>
+                <div class="m-row"><span class="m-row-label">Net Liquidity (12mo)</span><span
+                    class="m-row-value m-pos">+€9.1M</span></div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Exit Conditions & Lock-ups</div>
+                <div class="m-row"><span class="m-row-label">European Buyout IV</span><span class="m-row-value">8yr
+                    lock-up · 2031</span></div>
+                <div class="m-row"><span class="m-row-label">Global Macro HF</span><span class="m-row-value">Quarterly ·
+                    90d notice</span></div>
+                <div class="m-row"><span class="m-row-label">Alpine Credit III</span><span class="m-row-value">3yr ·
+                    Semi-annual gate</span></div>
+                <div class="m-row"><span class="m-row-label">Infrastructure II</span><span class="m-row-value">10yr · No
+                    early exit</span></div>
+                <div class="m-row"><span class="m-row-label">Est. Exit Discount (Sec.)</span><span
+                    class="m-row-value m-neg">12–18%</span></div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Secondary Market Activity</div>
+                <div class="token-grid" style="margin-bottom:16px;">
+                  <div class="token-card">
+                    <div class="token-card-label">Tradeable Assets</div>
+                    <div class="token-card-value">2</div>
+                  </div>
+                  <div class="token-card">
+                    <div class="token-card-label">Sec. Liquidity</div>
+                    <div class="token-card-value">€4.2M</div>
+                  </div>
+                </div>
+                <div class="m-row"><span class="m-row-label">Last Sec. Trade Price</span><span class="m-row-value">€98.4
+                    / unit</span></div>
+                <div class="m-row"><span class="m-row-label">Last Trade Volume</span><span
+                    class="m-row-value">€820K</span></div>
+                <div class="m-row"><span class="m-row-label">Implied Discount</span><span
+                    class="m-row-value m-neg">-7.8%</span></div>
+                <div class="m-row"><span class="m-row-label">Redemption Windows</span><span class="m-row-value">Q1 ·
+                    Q3</span></div>
+              </div>
+            </div>
+
+            <!-- Liquidity chart -->
+            <div class="m-panel" style="margin-bottom:48px;">
+              <div class="m-panel-title">12-Month Liquidity Forecast</div>
+              <div class="chart-container chart-container-tall">
+                <canvas id="chart-liquidity"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── ALLOCATION TAB ── -->
+          <div class="dash-tab" id="tab-allocation">
+            <div class="dash-header">
+              <div class="dash-header-eyebrow">Capital Allocation & Strategy</div>
+              <h1 class="dash-header-title">Allocation <em>Intelligence</em></h1>
+              <p class="dash-header-sub">Target vs Actual · Deployment Efficiency · Currency · Geography · Rebalancing
+              </p>
+            </div>
+
+            <div class="metrics-grid-2">
+              <div class="m-panel">
+                <div class="m-panel-title">Allocation by Asset Class <span class="badge">vs Target</span></div>
+                <div class="chart-container">
+                  <canvas id="chart-alloc-class"></canvas>
+                </div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Allocation by Geography</div>
+                <div class="chart-container">
+                  <canvas id="chart-alloc-geo"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- Currency exposure -->
+            <div class="m-panel" style="margin-bottom:2px;">
+              <div class="m-panel-title">Currency Exposure — Portfolio by Currency</div>
+              <div class="fx-bar" style="margin-top:16px;height:32px;">
+                <div class="fx-seg" style="background:#c9a96e;width:48%;">EUR 48%</div>
+                <div class="fx-seg" style="background:#6a8a9e;width:28%;">USD 28%</div>
+                <div class="fx-seg" style="background:#7a9a6a;width:12%;">GBP 12%</div>
+                <div class="fx-seg" style="background:#8a7a9e;width:8%;">CHF 8%</div>
+                <div class="fx-seg" style="background:#4a4a4a;width:4%;color:var(--silver);">Other</div>
+              </div>
+            </div>
+
+            <!-- FX Impact -->
+            <div class="metrics-grid-3" style="margin-top:2px;">
+              <div class="m-panel">
+                <div class="m-panel-title">FX Contribution to Performance</div>
+                <div class="m-row"><span class="m-row-label">EUR/USD effect (YTD)</span><span
+                    class="m-row-value m-neg">-0.18%</span></div>
+                <div class="m-row"><span class="m-row-label">EUR/GBP effect (YTD)</span><span
+                    class="m-row-value m-pos">+0.04%</span></div>
+                <div class="m-row"><span class="m-row-label">EUR/CHF effect (YTD)</span><span
+                    class="m-row-value m-neg">-0.08%</span></div>
+                <div class="m-row"><span class="m-row-label">Total FX Drag (YTD)</span><span
+                    class="m-row-value m-neg">-0.22%</span></div>
+                <div class="m-row"><span class="m-row-label">Hedged Exposure</span><span class="m-row-value">62%</span>
+                </div>
+                <div class="m-row"><span class="m-row-label">Unhedged Exposure</span><span
+                    class="m-row-value m-gold">38%</span></div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Deployment Efficiency</div>
+                <div class="m-row"><span class="m-row-label">Current Deployment Rate</span><span
+                    class="m-row-value m-pos">76.8%</span></div>
+                <div class="m-row"><span class="m-row-label">Avg. Time Uninvested</span><span class="m-row-value">34
+                    days</span></div>
+                <div class="m-row"><span class="m-row-label">Capital Deployed (YTD)</span><span
+                    class="m-row-value">€8.4M</span></div>
+                <div class="m-row"><span class="m-row-label">Avg. Deploy per Quarter</span><span
+                    class="m-row-value">€2.1M</span></div>
+                <div class="m-row"><span class="m-row-label">Idle Cash Cost (est.)</span><span
+                    class="m-row-value m-neg">-0.08%</span></div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Allocation by Strategy</div>
+                <div class="m-row"><span class="m-row-label">Income / Yield</span>
+                  <div class="m-bar-wrap">
+                    <div class="m-bar-track">
+                      <div class="m-bar-fill m-bar-green" style="width:35%;"></div>
+                    </div><span class="m-bar-pct" style="color:var(--green);">35%</span>
+                  </div>
+                </div>
+                <div class="m-row"><span class="m-row-label">Growth / Appreciation</span>
+                  <div class="m-bar-wrap">
+                    <div class="m-bar-track">
+                      <div class="m-bar-fill" style="width:42%;"></div>
+                    </div><span class="m-bar-pct">42%</span>
+                  </div>
+                </div>
+                <div class="m-row"><span class="m-row-label">Opportunistic</span>
+                  <div class="m-bar-wrap">
+                    <div class="m-bar-track">
+                      <div class="m-bar-fill m-bar-blue" style="width:15%;"></div>
+                    </div><span class="m-bar-pct" style="color:var(--blue);">15%</span>
+                  </div>
+                </div>
+                <div class="m-row"><span class="m-row-label">Cash / Dry Powder</span>
+                  <div class="m-bar-wrap">
+                    <div class="m-bar-track">
+                      <div class="m-bar-fill m-bar-red" style="width:8%;"></div>
+                    </div><span class="m-bar-pct" style="color:var(--silver);">8%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Rebalancing -->
+            <div class="m-panel" style="margin-bottom:48px;">
+              <div class="m-panel-title">Target vs Actual Allocation — Rebalancing Signals</div>
+              <div style="margin-top:8px;">
+                <div class="rebalance-item">
+                  <div class="rebalance-class">Private Equity</div>
+                  <div class="rebalance-bars">
+                    <span class="rebalance-label">Actual</span><span class="rebalance-actual">42%</span>
+                    <span class="rebalance-label" style="margin-left:16px;">Target</span><span
+                      class="rebalance-target">40%</span>
+                  </div>
+                  <span class="m-tag m-tag-gold rebalance-action">+2% Overweight</span>
+                </div>
+                <div class="rebalance-item">
+                  <div class="rebalance-class">Hedge Funds</div>
+                  <div class="rebalance-bars">
+                    <span class="rebalance-label">Actual</span><span class="rebalance-actual">28%</span>
+                    <span class="rebalance-label" style="margin-left:16px;">Target</span><span
+                      class="rebalance-target">30%</span>
+                  </div>
+                  <span class="m-tag m-tag-blue rebalance-action">-2% Underweight</span>
+                </div>
+                <div class="rebalance-item">
+                  <div class="rebalance-class">Private Credit</div>
+                  <div class="rebalance-bars">
+                    <span class="rebalance-label">Actual</span><span class="rebalance-actual">18%</span>
+                    <span class="rebalance-label" style="margin-left:16px;">Target</span><span
+                      class="rebalance-target">20%</span>
+                  </div>
+                  <span class="m-tag m-tag-blue rebalance-action">-2% Underweight</span>
+                </div>
+                <div class="rebalance-item">
+                  <div class="rebalance-class">Infrastructure / Alts</div>
+                  <div class="rebalance-bars">
+                    <span class="rebalance-label">Actual</span><span class="rebalance-actual">12%</span>
+                    <span class="rebalance-label" style="margin-left:16px;">Target</span><span
+                      class="rebalance-target">10%</span>
+                  </div>
+                  <span class="m-tag m-tag-gold rebalance-action">+2% Overweight</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── INCOME TAB ── -->
+          <div class="dash-tab" id="tab-income">
+            <div class="dash-header">
+              <div class="dash-header-eyebrow">Income & Yield Intelligence</div>
+              <h1 class="dash-header-title">Income <em>& Yield</em></h1>
+              <p class="dash-header-sub">Weighted yield · Forward yield · Income stability · Distribution metrics</p>
+            </div>
+
+            <div class="metrics-grid-4">
+              <div class="m-panel">
+                <div class="m-panel-title">Wtd Avg Portfolio Yield</div>
+                <div class="m-big">7.4%</div>
+                <div class="m-sub">Blended across all assets</div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Forward Yield (12mo)</div>
+                <div class="m-big">8.1%</div>
+                <div class="m-sub m-pos">+70bps vs current</div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Income Predictability</div>
+                <div class="m-big">74%</div>
+                <div class="m-sub">Fixed income component</div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Coverage Ratio</div>
+                <div class="m-big">1.18x</div>
+                <div class="m-sub m-pos">vs expectations</div>
+              </div>
+            </div>
+
+            <div class="metrics-grid-3">
+              <div class="m-panel">
+                <div class="m-panel-title">Yield by Asset Class</div>
+                <div class="m-row"><span class="m-row-label">Private Credit</span><span class="m-row-value m-pos">SOFR +
+                    650bps</span></div>
+                <div class="m-row"><span class="m-row-label">Infrastructure</span><span
+                    class="m-row-value m-pos">7.2%</span></div>
+                <div class="m-row"><span class="m-row-label">Hedge Fund (HWM)</span><span
+                    class="m-row-value">~6.8%</span>
+                </div>
+                <div class="m-row"><span class="m-row-label">Private Equity (est.)</span><span class="m-row-value">~3.1%
+                    (dist.)</span></div>
+                <div class="m-row"><span class="m-row-label">Cash / MM</span><span class="m-row-value">4.2%</span></div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Income Stability</div>
+                <div class="m-row"><span class="m-row-label">Fixed Income %</span><span
+                    class="m-row-value m-pos">74%</span></div>
+                <div class="m-row"><span class="m-row-label">Variable Income %</span><span
+                    class="m-row-value">26%</span>
+                </div>
+                <div class="m-row"><span class="m-row-label">Predictability Score</span><span
+                    class="m-row-value m-gold">7.4/10</span></div>
+                <div class="m-row"><span class="m-row-label">Income Volatility</span><span
+                    class="m-row-value">Low-Medium</span></div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Distribution Metrics</div>
+                <div class="m-row"><span class="m-row-label">Income Received MTD</span><span
+                    class="m-row-value m-pos">€118K</span></div>
+                <div class="m-row"><span class="m-row-label">Income Received YTD</span><span
+                    class="m-row-value m-pos">€1.42M</span></div>
+                <div class="m-row"><span class="m-row-label">Distribution Frequency</span><span
+                    class="m-row-value">Quarterly</span></div>
+                <div class="m-row"><span class="m-row-label">Next Distribution (est.)</span><span
+                    class="m-row-value">Mar
+                    31, 2025</span></div>
+                <div class="m-row"><span class="m-row-label">Expected Amount</span><span
+                    class="m-row-value m-pos">€420K</span></div>
+              </div>
+            </div>
+
+            <div class="m-panel" style="margin-bottom:48px;">
+              <div class="m-panel-title">Income Received — Monthly (YTD)</div>
+              <div class="chart-container chart-container-tall">
+                <canvas id="chart-income-monthly"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── DEALS TAB ── -->
+          <div class="dash-tab" id="tab-deals">
+            <div class="dash-header">
+              <div class="dash-header-eyebrow">Exclusive Access</div>
+              <h1 class="dash-header-title">Deal <em>Catalogue</em></h1>
+              <p class="dash-header-sub">Validated opportunities reviewed by the Investment Committee</p>
+            </div>
+            <!-- Catalog Advanced Controls -->
+            <div class="catalog-controls">
+              <div class="controls-main">
+                <div class="search-wrap">
+                  <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                  <input type="text" id="catalog-search" placeholder="Search opportunities or sponsors..."
+                    oninput="handleSearchChange()">
+                </div>
+
+                <div class="filter-group">
+                  <label for="filter-asset-class">Asset Class</label>
+                  <select id="filter-asset-class" onchange="handleAssetClassChange()">
+                    <option value="">All Asset Classes</option>
+                    <option value="Public Equities">Public Equities</option>
+                    <option value="Fixed Income">Fixed Income</option>
+                    <option value="Hedge Funds">Hedge Funds</option>
+                    <option value="Private Equity">Private Equity</option>
+                    <option value="Private Debt">Private Debt</option>
+                    <option value="Infrastructure">Infrastructure</option>
+                    <option value="Real Estate">Real Estate</option>
+                    <option value="Alternative Strategies">Alternative Strategies</option>
+                    <option value="Digital Assets">Digital Assets</option>
+                    <option value="Cash & Liquidity">Cash & Liquidity</option>
+                  </select>
+                </div>
+
+                <div class="filter-group">
+                  <label for="filter-strategy">Strategy</label>
+                  <select id="filter-strategy" onchange="handleStrategyChange()">
+                    <option value="">All Strategies</option>
+                  </select>
+                </div>
+
+                <button class="advanced-filters-btn" onclick="toggleAdvancedFilters(true)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    style="width:14px; height:14px; margin-right:8px; display:inline-block; vertical-align:middle;">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                  </svg>
+                  Filters
+                </button>
+
+                <div class="sort-group">
+                  <label for="catalog-sort">Sort By</label>
+                  <select id="catalog-sort" onchange="handleSortChange()">
+                    <option value="latest">Latest Opportunities</option>
+                    <option value="return">Target Return</option>
+                    <option value="risk">Risk Score</option>
+                    <option value="liquidity">Liquidity</option>
+                    <option value="min_investment">Minimum Investment</option>
+                    <option value="aum">AUM / Size</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Active Filter Chips -->
+              <div class="active-chips" id="active-chips-container"></div>
+            </div>
+
+            <!-- Dynamic opportunities catalogue grid -->
+            <div class="deals-grid" id="catalog-deals-grid"></div>
+          </div>
+
+          <!-- ── PORTFOLIO TAB ── -->
+          <div class="dash-tab" id="tab-portfolio">
+            <div class="dash-header">
+              <div class="dash-header-eyebrow">Your Holdings</div>
+              <h1 class="dash-header-title">Investment <em>Portfolio</em></h1>
+              <p class="dash-header-sub">Active commitments · Deal-level metrics · IRR · MOIC · Duration</p>
+            </div>
+            <div class="kpi-row">
+              <div class="kpi-card">
+                <div class="kpi-label">Total Committed</div>
+                <div class="kpi-value" id="port-committed">—</div>
+                <div class="kpi-sub">Across all vehicles</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Deployed</div>
+                <div class="kpi-value" id="port-deployed">—</div>
+                <div class="kpi-sub">Called capital</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Unrealised Value</div>
+                <div class="kpi-value" id="port-value">—</div>
+                <div class="kpi-sub">Current NAV estimate</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">TVPI</div>
+                <div class="kpi-value" id="port-tvpi">—</div>
+                <div class="kpi-sub">Total value / paid-in</div>
+              </div>
+            </div>
+            <!-- Deal-level metrics table -->
+            <!-- Portfolio View Controls -->
+            <div class="portfolio-controls"
+              style="display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; border-bottom:1px solid rgba(201, 169, 110, 0.1); padding-bottom:12px; margin-top:28px;">
+              <h2
+                style="font-family:'Cormorant Garamond', serif; font-size:22px; font-weight:500; color:var(--cream); margin:0;">
+                Active Holdings</h2>
+              <div class="view-toggles">
+                <button class="view-toggle-btn active" id="port-view-list-btn"
+                  onclick="setPortfolioView('list')">Position List</button>
+                <button class="view-toggle-btn" id="port-view-analytics-btn"
+                  onclick="setPortfolioView('analytics')">Portfolio Analytics</button>
+              </div>
+            </div>
+
+            <!-- Position List View -->
+            <div class="data-table-wrap" id="portfolio-list-view">
+              <div class="data-table-header">
+                <div class="data-table-title">Active Positions — Deal-Level Metrics</div>
+                <button class="data-table-action export-btn">Export Report</button>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Fund / Vehicle</th>
+                    <th>Strategy</th>
+                    <th>Entry</th>
+                    <th>Current Val.</th>
+                    <th>Ownership %</th>
+                    <th>IRR (est.)</th>
+                    <th>MOIC</th>
+                    <th>CoC Return</th>
+                    <th>Duration</th>
+                    <th>Risk Rating</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="portfolio-table-body"></tbody>
+              </table>
+            </div>
+
+            <!-- Portfolio Analytics View -->
+            <div id="portfolio-analytics-view" style="display:none;">
+              <div class="metrics-grid-3" style="margin-bottom:2px;">
+                <div class="m-panel">
+                  <div class="m-panel-title">Asset Class Exposure</div>
+                  <div class="chart-container"
+                    style="height:140px; display:flex; align-items:center; justify-content:center;">
+                    <canvas id="chart-port-asset-class"></canvas>
+                  </div>
+                </div>
+                <div class="m-panel">
+                  <div class="m-panel-title">Strategy Exposure</div>
+                  <div class="chart-container"
+                    style="height:140px; display:flex; align-items:center; justify-content:center;">
+                    <canvas id="chart-port-strategy"></canvas>
+                  </div>
+                </div>
+                <div class="m-panel">
+                  <div class="m-panel-title">Geographic Exposure</div>
+                  <div class="chart-container"
+                    style="height:140px; display:flex; align-items:center; justify-content:center;">
+                    <canvas id="chart-port-geo"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <div class="metrics-grid-4" style="margin-top:2px;">
+                <div class="m-panel">
+                  <div class="m-panel-title">Currency Exposure</div>
+                  <div class="chart-container"
+                    style="height:140px; display:flex; align-items:center; justify-content:center;">
+                    <canvas id="chart-port-currency"></canvas>
+                  </div>
+                </div>
+                <div class="m-panel">
+                  <div class="m-panel-title">Liquidity Profile</div>
+                  <div class="chart-container"
+                    style="height:140px; display:flex; align-items:center; justify-content:center;">
+                    <canvas id="chart-port-liquidity"></canvas>
+                  </div>
+                </div>
+                <div class="m-panel">
+                  <div class="m-panel-title">Risk Profile</div>
+                  <div class="chart-container"
+                    style="height:140px; display:flex; align-items:center; justify-content:center;">
+                    <canvas id="chart-port-risk"></canvas>
+                  </div>
+                </div>
+                <div class="m-panel">
+                  <div class="m-panel-title">Income Profile</div>
+                  <div class="chart-container"
+                    style="height:140px; display:flex; align-items:center; justify-content:center;">
+                    <canvas id="chart-port-income"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <div id="portfolio-analytics-empty"
+                style="display:none; text-align:center; padding:48px; color:var(--silver); background:var(--charcoal); font-size:13px; letter-spacing:0.05em;">
+                No holdings recorded for the current role to analyze.
+              </div>
+            </div>
+          </div>
+
+          <!-- ── ORIGINATION TAB ── -->
+          <div class="dash-tab" id="tab-origination">
+            <div class="dash-header">
+              <div class="dash-header-eyebrow">Deal Management</div>
+              <h1 class="dash-header-title">Deal <em>Origination</em></h1>
+              <p class="dash-header-sub">Structure, validate and distribute your investment opportunities</p>
+            </div>
+            <div class="kpi-row">
+              <div class="kpi-card">
+                <div class="kpi-label">Active Mandates</div>
+                <div class="kpi-value">3</div>
+                <div class="kpi-sub">Under distribution</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Soft Circle</div>
+                <div class="kpi-value">€340M</div>
+                <div class="kpi-sub">Across all mandates</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">LP Engagements</div>
+                <div class="kpi-value">28</div>
+                <div class="kpi-sub">Active conversations</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Avg. Time to Close</div>
+                <div class="kpi-value">4.2mo</div>
+                <div class="kpi-sub">Platform average</div>
+              </div>
+            </div>
+            <div class="data-table-wrap">
+              <div class="data-table-header">
+                <div class="data-table-title">Your Mandates</div>
+                <button class="data-table-action">+ Submit New Deal</button>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Fund / Opportunity</th>
+                    <th>Strategy</th>
+                    <th>Target Size</th>
+                    <th>Soft Circle</th>
+                    <th>LPs</th>
+                    <th>Stage</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Meridian PE Fund V</td>
+                    <td>Buyout — Mid Market</td>
+                    <td>€600M</td>
+                    <td>€210M</td>
+                    <td>14</td>
+                    <td><span style="color:var(--green);font-size:9px;letter-spacing:0.15em;">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>Corsair Credit Special Sits I</td>
+                    <td>Direct Lending</td>
+                    <td>€300M</td>
+                    <td>€85M</td>
+                    <td>9</td>
+                    <td><span style="color:var(--gold);font-size:9px;letter-spacing:0.15em;">IC Review</span></td>
+                  </tr>
+                  <tr>
+                    <td>Alpine Secondaries Opportunity</td>
+                    <td>PE Secondaries</td>
+                    <td>€450M</td>
+                    <td>€45M</td>
+                    <td>5</td>
+                    <td><span style="color:var(--silver);font-size:9px;letter-spacing:0.15em;">Marketing</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- ── ALERTS TAB ── -->
+          <div class="dash-tab" id="tab-alerts">
+            <div class="dash-header">
+              <div class="dash-header-eyebrow">Intelligence</div>
+              <h1 class="dash-header-title">Alerts, Flags <em>& Actions</em></h1>
+              <p class="dash-header-sub">Overexposure warnings · Liquidity constraints · Opportunity matching · Capital
+                actions</p>
+            </div>
+
+            <div class="metrics-grid-2">
+              <div class="m-panel">
+                <div class="m-panel-title">Active Alerts & Flags <span class="badge">5 Active</span></div>
+                <div class="alert-item">
+                  <div class="alert-icon alert-icon-danger">⚠</div>
+                  <div>
+                    <div class="alert-item-text"><strong>Top 5 Concentration: 84.3%</strong> — Exceeds 80% threshold.
+                      Review diversification or rebalance.</div>
+                    <div class="alert-item-time">Risk · High Priority</div>
+                  </div>
+                </div>
+                <div class="alert-item">
+                  <div class="alert-icon alert-icon-warn">!</div>
+                  <div>
+                    <div class="alert-item-text"><strong>Capital Call Pending:</strong> European Buyout Fund IV — €2.1M
+                      due Feb 15, 2025.</div>
+                    <div class="alert-item-time">Liquidity · 18 days</div>
+                  </div>
+                </div>
+                <div class="alert-item">
+                  <div class="alert-icon alert-icon-warn">!</div>
+                  <div>
+                    <div class="alert-item-text"><strong>Hedge Fund Underperforming:</strong> Global Macro Strategy YTD:
+                      +2.1% vs peer avg: +5.8%.</div>
+                    <div class="alert-item-time">Performance · Medium Priority</div>
+                  </div>
+                </div>
+                <div class="alert-item">
+                  <div class="alert-icon alert-icon-info">✓</div>
+                  <div>
+                    <div class="alert-item-text"><strong>NDA Required:</strong> Alpine Credit Opportunities III — access
+                      restricted pending e-signature.</div>
+                    <div class="alert-item-time">Compliance · Action Required</div>
+                  </div>
+                </div>
+                <div class="alert-item">
+                  <div class="alert-icon alert-icon-info">i</div>
+                  <div>
+                    <div class="alert-item-text"><strong>Dry Powder Opportunity:</strong> €11.6M uninvested.
+                      Infrastructure II closing Q2 2025 — match detected.</div>
+                    <div class="alert-item-time">Opportunity · Low Urgency</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="m-panel">
+                <div class="m-panel-title">Opportunity Matching <span class="badge">AI-Matched</span></div>
+                <div class="opp-card">
+                  <div class="opp-card-left">
+                    <div class="opp-card-title">Infrastructure Income Fund II</div>
+                    <div class="opp-card-sub">Corsair AM · Alternatives · €10M min</div>
+                  </div>
+                  <div class="opp-card-right">
+                    <div class="opp-card-match">94% match</div>
+                    <div class="opp-card-match-sub">vs your mandate</div>
+                  </div>
+                </div>
+                <div class="opp-card">
+                  <div class="opp-card-left">
+                    <div class="opp-card-title">Nordic Growth Fund III</div>
+                    <div class="opp-card-sub">Fjord Capital · PE · €3M min</div>
+                  </div>
+                  <div class="opp-card-right">
+                    <div class="opp-card-match">87% match</div>
+                    <div class="opp-card-match-sub">vs your mandate</div>
+                  </div>
+                </div>
+                <div class="opp-card">
+                  <div class="opp-card-left">
+                    <div class="opp-card-title">Iberian Real Estate Credit I</div>
+                    <div class="opp-card-sub">Meridian Credit · Credit · €2M min</div>
+                  </div>
+                  <div class="opp-card-right">
+                    <div class="opp-card-match">79% match</div>
+                    <div class="opp-card-match-sub">vs your mandate</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Capital Actions -->
+            <div class="m-panel" style="margin-bottom:48px;">
+              <div class="m-panel-title">Capital Actions — Suggested Rebalancing</div>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;">
+                <button class="capital-action-btn cap-btn-primary">Reinvest Distributions (€0.8M)</button>
+                <button class="capital-action-btn cap-btn-ghost">Increase HF Allocation (+2%)</button>
+                <button class="capital-action-btn cap-btn-ghost">Review Infrastructure II</button>
+                <button class="capital-action-btn cap-btn-ghost">Sign Alpine Credit NDA</button>
+                <button class="capital-action-btn cap-btn-ghost">Schedule IC Briefing</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── FORECASTING TAB ── -->
+          <div class="dash-tab" id="tab-forecasting">
+            <div class="dash-header">
+              <div class="dash-header-eyebrow">Advanced Analytics</div>
+              <h1 class="dash-header-title">Forecasting <em>& Scenarios</em></h1>
+              <p class="dash-header-sub">Expected returns · Best/base/worst case · Sensitivity analysis · Risk-adjusted
+                metrics</p>
+            </div>
+
+            <div class="metric-section-title">Scenario Analysis</div>
+            <div class="metric-section-sub">12-Month Horizon · Best / Base / Worst Case</div>
+            <div class="forecast-grid">
+              <div class="forecast-card">
+                <div class="forecast-card-label">Expected Return (12mo)</div>
+                <div class="forecast-scenario"><span class="forecast-scenario-label">Best Case</span><span
+                    class="forecast-scenario-value m-pos">+18.4%</span></div>
+                <div class="forecast-scenario"><span class="forecast-scenario-label">Base Case</span><span
+                    class="forecast-scenario-value m-gold">+11.2%</span></div>
+                <div class="forecast-scenario"><span class="forecast-scenario-label">Worst Case</span><span
+                    class="forecast-scenario-value m-neg">-3.8%</span></div>
+              </div>
+              <div class="forecast-card">
+                <div class="forecast-card-label">Expected Yield (12mo)</div>
+                <div class="forecast-scenario"><span class="forecast-scenario-label">Best Case</span><span
+                    class="forecast-scenario-value m-pos">9.2%</span></div>
+                <div class="forecast-scenario"><span class="forecast-scenario-label">Base Case</span><span
+                    class="forecast-scenario-value m-gold">7.8%</span></div>
+                <div class="forecast-scenario"><span class="forecast-scenario-label">Worst Case</span><span
+                    class="forecast-scenario-value m-neg">5.4%</span></div>
+              </div>
+              <div class="forecast-card">
+                <div class="forecast-card-label">Liquidity Forecast (12mo)</div>
+                <div class="forecast-scenario"><span class="forecast-scenario-label">Best Case</span><span
+                    class="forecast-scenario-value m-pos">€18.4M liquid</span></div>
+                <div class="forecast-scenario"><span class="forecast-scenario-label">Base Case</span><span
+                    class="forecast-scenario-value m-gold">€13.2M liquid</span></div>
+                <div class="forecast-scenario"><span class="forecast-scenario-label">Worst Case</span><span
+                    class="forecast-scenario-value m-neg">€7.8M liquid</span></div>
+              </div>
+            </div>
+
+            <div class="m-panel" style="margin-bottom:48px;">
+              <div class="m-panel-title">Sensitivity Analysis</div>
+              <table class="sensitivity-table">
+                <thead>
+                  <tr>
+                    <th>Factor</th>
+                    <th>-200bps / -20%</th>
+                    <th>-100bps / -10%</th>
+                    <th>Base</th>
+                    <th>+100bps / +10%</th>
+                    <th>+200bps / +20%</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Interest Rates</td>
+                    <td style="color:var(--green);">+€3.4M</td>
+                    <td style="color:var(--green);">+€1.7M</td>
+                    <td style="color:var(--gold);">Base</td>
+                    <td style="color:var(--red);">-€1.8M</td>
+                    <td style="color:var(--red);">-€4.2M</td>
+                  </tr>
+                  <tr>
+                    <td>Inflation</td>
+                    <td style="color:var(--green);">+€1.2M</td>
+                    <td style="color:var(--green);">+€0.6M</td>
+                    <td style="color:var(--gold);">Base</td>
+                    <td style="color:var(--red);">-€0.8M</td>
+                    <td style="color:var(--red);">-€1.8M</td>
+                  </tr>
+                  <tr>
+                    <td>Credit Spreads</td>
+                    <td style="color:var(--green);">+€2.1M</td>
+                    <td style="color:var(--green);">+€1.0M</td>
+                    <td style="color:var(--gold);">Base</td>
+                    <td style="color:var(--red);">-€1.2M</td>
+                    <td style="color:var(--red);">-€2.8M</td>
+                  </tr>
+                  <tr>
+                    <td>EUR/USD FX</td>
+                    <td style="color:var(--red);">-€0.9M</td>
+                    <td style="color:var(--red);">-€0.4M</td>
+                    <td style="color:var(--gold);">Base</td>
+                    <td style="color:var(--green);">+€0.4M</td>
+                    <td style="color:var(--green);">+€0.8M</td>
+                  </tr>
+                  <tr>
+                    <td>Equity Markets</td>
+                    <td style="color:var(--red);">-€2.8M</td>
+                    <td style="color:var(--red);">-€1.4M</td>
+                    <td style="color:var(--gold);">Base</td>
+                    <td style="color:var(--green);">+€1.2M</td>
+                    <td style="color:var(--green);">+€2.6M</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Risk-adjusted metrics -->
+            <div class="metrics-grid-4">
+              <div class="m-panel">
+                <div class="m-panel-title">Sharpe Ratio</div>
+                <div class="m-big">1.42</div>
+                <div class="m-sub m-pos">Above 1.0 threshold</div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Sortino Ratio</div>
+                <div class="m-big">1.87</div>
+                <div class="m-sub m-pos">Strong downside adj.</div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Risk-Adj. Score</div>
+                <div class="m-big">8.2</div>
+                <div class="m-sub">out of 10</div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Information Ratio</div>
+                <div class="m-big">0.84</div>
+                <div class="m-sub m-gold">vs benchmark</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── TOKENIZATION TAB ── -->
+          <div class="dash-tab" id="tab-tokenization">
+            <div class="dash-header">
+              <div class="dash-header-eyebrow">EquusChain Infrastructure</div>
+              <h1 class="dash-header-title">Tokenization <em>Metrics</em></h1>
+              <p class="dash-header-sub">Token structure · Market activity · Rights & governance · Secondary liquidity
+              </p>
+            </div>
+
+            <div class="alert-banner">
+              <div class="alert-dot"></div>
+              <div class="alert-text"><strong>EquusChain Integration Active:</strong> 2 assets are tokenized and
+                available for secondary market activity via the EquusChain protocol.</div>
+            </div>
+
+            <div class="metrics-grid-3">
+              <div class="m-panel">
+                <div class="m-panel-title">Token Structure — European Buyout IV</div>
+                <div class="token-grid">
+                  <div class="token-card">
+                    <div class="token-card-label">% Tokenized</div>
+                    <div class="token-card-value">34%</div>
+                  </div>
+                  <div class="token-card">
+                    <div class="token-card-label">Token Supply</div>
+                    <div class="token-card-value">3.4M</div>
+                  </div>
+                  <div class="token-card">
+                    <div class="token-card-label">Your Tokens</div>
+                    <div class="token-card-value">152K</div>
+                  </div>
+                </div>
+                <div class="m-row"><span class="m-row-label">Ownership Distribution</span><span class="m-row-value">42
+                    holders</span></div>
+                <div class="m-row"><span class="m-row-label">Income Rights</span><span class="m-row-value m-pos">Yes —
+                    Pro-rata</span></div>
+                <div class="m-row"><span class="m-row-label">Governance Rights</span><span
+                    class="m-row-value m-gold">Advisory only</span></div>
+                <div class="m-row"><span class="m-row-label">Redemption Rights</span><span class="m-row-value">At fund
+                    close</span></div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Token Structure — Alpine Credit III</div>
+                <div class="token-grid">
+                  <div class="token-card">
+                    <div class="token-card-label">% Tokenized</div>
+                    <div class="token-card-value">18%</div>
+                  </div>
+                  <div class="token-card">
+                    <div class="token-card-label">Token Supply</div>
+                    <div class="token-card-value">900K</div>
+                  </div>
+                  <div class="token-card">
+                    <div class="token-card-label">Your Tokens</div>
+                    <div class="token-card-value">54K</div>
+                  </div>
+                </div>
+                <div class="m-row"><span class="m-row-label">Ownership Distribution</span><span class="m-row-value">18
+                    holders</span></div>
+                <div class="m-row"><span class="m-row-label">Income Rights</span><span class="m-row-value m-pos">Yes —
+                    Interest strip</span></div>
+                <div class="m-row"><span class="m-row-label">Governance Rights</span><span
+                    class="m-row-value m-neg">None</span></div>
+                <div class="m-row"><span class="m-row-label">Redemption Rights</span><span
+                    class="m-row-value">Semi-annual
+                    gate</span></div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Market Activity <span class="badge">Live</span></div>
+                <div class="m-row"><span class="m-row-label">Last Traded Price (Buyout IV)</span><span
+                    class="m-row-value">€98.40 / tkn</span></div>
+                <div class="m-row"><span class="m-row-label">Last Traded Price (Credit III)</span><span
+                    class="m-row-value">€101.20 / tkn</span></div>
+                <div class="m-row"><span class="m-row-label">24h Volume (Buyout IV)</span><span
+                    class="m-row-value">€420K</span></div>
+                <div class="m-row"><span class="m-row-label">24h Volume (Credit III)</span><span
+                    class="m-row-value">€180K</span></div>
+                <div class="m-row"><span class="m-row-label">Liquidity Depth (Buyout IV)</span><span
+                    class="m-row-value m-pos">€2.4M</span></div>
+                <div class="m-row"><span class="m-row-label">Liquidity Depth (Credit III)</span><span
+                    class="m-row-value m-pos">€1.8M</span></div>
+                <div class="m-row"><span class="m-row-label">Implied Discount vs NAV</span><span
+                    class="m-row-value m-neg">-7.8%</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── FEES TAB ── -->
+          <div class="dash-tab" id="tab-fees">
+            <div class="dash-header">
+              <div class="dash-header-eyebrow">Transparency & Trust</div>
+              <h1 class="dash-header-title">Fees <em>& Costs</em></h1>
+              <p class="dash-header-sub">Management fees · Performance fees · Platform fees · Net impact</p>
+            </div>
+
+            <div class="metrics-grid-4">
+              <div class="m-panel">
+                <div class="m-panel-title">Total Fees (YTD)</div>
+                <div class="m-big">€820K</div>
+                <div class="m-sub m-neg">-1.6% return drag</div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Total Fees (SI)</div>
+                <div class="m-big">€1.94M</div>
+                <div class="m-sub m-neg">-4.2% drag SI</div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Gross Return (YTD)</div>
+                <div class="m-big">+11.4%</div>
+                <div class="m-sub">Before all fees</div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Net Return (YTD)</div>
+                <div class="m-big">+9.8%</div>
+                <div class="m-sub m-neg">After all fees</div>
+              </div>
+            </div>
+
+            <div class="metrics-grid-2">
+              <div class="m-panel">
+                <div class="m-panel-title">Fee Breakdown by Type (YTD)</div>
+                <div class="fee-item"><span class="fee-label">Management Fees (avg. 1.8% p.a.)</span><span
+                    class="fee-value">€480K <span class="fee-impact">-0.94%</span></span></div>
+                <div class="fee-item"><span class="fee-label">Performance Fees (20% HWM carry)</span><span
+                    class="fee-value">€240K <span class="fee-impact">-0.47%</span></span></div>
+                <div class="fee-item"><span class="fee-label">Platform Access Fee</span><span class="fee-value">€60K
+                    <span class="fee-impact">-0.12%</span></span></div>
+                <div class="fee-item"><span class="fee-label">Transaction Costs</span><span class="fee-value">€24K <span
+                      class="fee-impact">-0.05%</span></span></div>
+                <div class="fee-item"><span class="fee-label">Legal / Admin Costs</span><span class="fee-value">€16K
+                    <span class="fee-impact">-0.03%</span></span></div>
+                <div class="fee-item" style="border-top:1px solid var(--gold-line);padding-top:12px;margin-top:4px;">
+                  <span class="fee-label" style="color:var(--ivory);font-weight:400;">Total Fees Paid (YTD)</span><span
+                    class="fee-value">€820K <span class="fee-impact">-1.61%</span></span>
+                </div>
+              </div>
+              <div class="m-panel">
+                <div class="m-panel-title">Fee Breakdown by Fund</div>
+                <div class="fee-item"><span class="fee-label">European Buyout Fund IV</span><span
+                    class="fee-value">€324K</span></div>
+                <div class="fee-item"><span class="fee-label">Global Macro HF</span><span class="fee-value">€218K</span>
+                </div>
+                <div class="fee-item"><span class="fee-label">Alpine Credit III</span><span
+                    class="fee-value">€148K</span>
+                </div>
+                <div class="fee-item"><span class="fee-label">Infrastructure Income II</span><span
+                    class="fee-value">€70K</span></div>
+                <div class="fee-item"><span class="fee-label">Platform & Admin</span><span class="fee-value">€60K</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="m-panel" style="margin-bottom:48px;">
+              <div class="m-panel-title">Gross vs Net Return Comparison</div>
+              <div class="chart-container chart-container-tall">
+                <canvas id="chart-fees-comparison"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── REPORTING TAB ── -->
+          <div class="dash-tab" id="tab-reporting">
+            <div class="dash-header">
+              <div class="dash-header-eyebrow">Institutional Reporting</div>
+              <h1 class="dash-header-title">Quarterly <em>Reports</em></h1>
+              <p class="dash-header-sub">Audit-ready · Downloadable · Consolidated · Multi-entity</p>
+            </div>
+
+            <div class="report-period-nav">
+              <button class="period-btn active">Q4 2024</button>
+              <button class="period-btn">Q3 2024</button>
+              <button class="period-btn">Q2 2024</button>
+              <button class="period-btn">Q1 2024</button>
+              <button class="period-btn">FY 2023</button>
+            </div>
+
+            <div class="kpi-row">
+              <div class="kpi-card">
+                <div class="kpi-label">Q4 NAV</div>
+                <div class="kpi-value">€42.8M</div>
+                <div class="kpi-sub pos">+2.1%</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Q4 Return (Gross)</div>
+                <div class="kpi-value">+4.87%</div>
+                <div class="kpi-sub pos">vs +3.2% benchmark</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Q4 Distributions</div>
+                <div class="kpi-value">€420K</div>
+                <div class="kpi-sub">Received</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Q4 Fees Paid</div>
+                <div class="kpi-value">€212K</div>
+                <div class="kpi-sub neg">-0.49% drag</div>
+              </div>
+            </div>
+
+            <div class="data-table-wrap">
+              <div class="data-table-header">
+                <div class="data-table-title">Q4 2024 — Report Documents</div>
+                <div style="display:flex;gap:8px;">
+                  <button class="export-btn">Download PDF</button>
+                  <button class="export-btn">Download Excel</button>
+                </div>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Report</th>
+                    <th>Period</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Portfolio Performance Summary</td>
+                    <td>Q4 2024</td>
+                    <td>Performance Report</td>
+                    <td><span style="color:var(--green);">Ready</span></td>
+                    <td><span style="color:var(--gold);cursor:pointer;">Download</span></td>
+                  </tr>
+                  <tr>
+                    <td>NAV Statement</td>
+                    <td>31 Dec 2024</td>
+                    <td>Valuation Statement</td>
+                    <td><span style="color:var(--green);">Ready</span></td>
+                    <td><span style="color:var(--gold);cursor:pointer;">Download</span></td>
+                  </tr>
+                  <tr>
+                    <td>Capital Account Statement</td>
+                    <td>Q4 2024</td>
+                    <td>Capital Statement</td>
+                    <td><span style="color:var(--green);">Ready</span></td>
+                    <td><span style="color:var(--gold);cursor:pointer;">Download</span></td>
+                  </tr>
+                  <tr>
+                    <td>Fee & Cost Summary</td>
+                    <td>Q4 2024</td>
+                    <td>Cost Report</td>
+                    <td><span style="color:var(--green);">Ready</span></td>
+                    <td><span style="color:var(--gold);cursor:pointer;">Download</span></td>
+                  </tr>
+                  <tr>
+                    <td>Risk & Liquidity Report</td>
+                    <td>Q4 2024</td>
+                    <td>Risk Report</td>
+                    <td><span style="color:var(--gold);">Generating</span></td>
+                    <td><span style="color:var(--iron);">Pending</span></td>
+                  </tr>
+                  <tr>
+                    <td>Audit-Ready Package</td>
+                    <td>FY 2024</td>
+                    <td>Audit Pack</td>
+                    <td><span style="color:var(--gold);">In Preparation</span></td>
+                    <td><span style="color:var(--iron);">Pending</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- ── ENTITIES TAB ── -->
+          <div class="dash-tab" id="tab-entities">
+            <div class="dash-header">
+              <div class="dash-header-eyebrow">Client & Family Office Layer</div>
+              <h1 class="dash-header-title">Multi-Entity <em>View</em></h1>
+              <p class="dash-header-sub">Aggregated portfolio across SPVs · Consolidated performance · Entity-level
+                breakdown</p>
+            </div>
+
+            <div class="entity-tabs">
+              <button class="entity-tab active">Consolidated</button>
+              <button class="entity-tab">Vandenberg FO — Main</button>
+              <button class="entity-tab">SPV Alpha (Luxembourg)</button>
+              <button class="entity-tab">Trust — Cayman</button>
+            </div>
+
+            <div class="kpi-row">
+              <div class="kpi-card">
+                <div class="kpi-label">Consolidated NAV</div>
+                <div class="kpi-value">€128.4M</div>
+                <div class="kpi-sub">Across all entities</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Entities</div>
+                <div class="kpi-value">3</div>
+                <div class="kpi-sub">Active structures</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Blended Return (YTD)</div>
+                <div class="kpi-value">+10.8%</div>
+                <div class="kpi-sub pos">Gross</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-label">Consolidated TVPI</div>
+                <div class="kpi-value">1.31x</div>
+                <div class="kpi-sub">Across all entities</div>
+              </div>
+            </div>
+
+            <div class="data-table-wrap" style="margin-bottom:48px;">
+              <div class="data-table-header">
+                <div class="data-table-title">Entity Breakdown</div>
+                <button class="export-btn">Export Consolidated Report</button>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Entity</th>
+                    <th>Domicile</th>
+                    <th>NAV</th>
+                    <th>YTD Return</th>
+                    <th># Positions</th>
+                    <th>TVPI</th>
+                    <th>Reporting Currency</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Vandenberg FO — Main</td>
+                    <td>Switzerland</td>
+                    <td>€42.8M</td>
+                    <td style="color:var(--green);">+11.4%</td>
+                    <td>4</td>
+                    <td>1.24x</td>
+                    <td>EUR</td>
+                  </tr>
+                  <tr>
+                    <td>SPV Alpha (Luxembourg)</td>
+                    <td>Luxembourg</td>
+                    <td>€64.2M</td>
+                    <td style="color:var(--green);">+10.6%</td>
+                    <td>7</td>
+                    <td>1.38x</td>
+                    <td>EUR</td>
+                  </tr>
+                  <tr>
+                    <td>Trust — Cayman</td>
+                    <td>Cayman Islands</td>
+                    <td>$22.8M</td>
+                    <td style="color:var(--green);">+9.8%</td>
+                    <td>3</td>
+                    <td>1.19x</td>
+                    <td>USD</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- ── MEMBERS TAB ── -->
+          <div class="dash-tab" id="tab-members">
+            <div class="dash-header">
+              <div class="dash-header-eyebrow">Network</div>
+              <h1 class="dash-header-title">Team <em>Members</em></h1>
+              <p class="dash-header-sub">Verified professional participants</p>
+            </div>
+            <div class="data-table-wrap">
+              <div class="data-table-header">
+                <div class="data-table-title">Platform Members</div>
+                <button class="data-table-action">Request Introduction</button>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Level</th>
+                    <th>Location</th>
+                    <th>AUM / Focus</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Vandenberg Family Office</td>
+                    <td>Single Family Office</td>
+                    <td>Geneva, CH</td>
+                    <td>$800M+</td>
+                    <td><span style="color:var(--green);">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>Northern Arc Capital Partners</td>
+                    <td>GP — Private Equity</td>
+                    <td>Luxembourg</td>
+                    <td>€2.4B AUM</td>
+                    <td><span style="color:var(--green);">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>Ashford Capital Management</td>
+                    <td>GP — Hedge Fund</td>
+                    <td>London, UK</td>
+                    <td>$2.1B AUM</td>
+                    <td><span style="color:var(--green);">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>Rothbury Multi-Family Office</td>
+                    <td>Multi-Family Office</td>
+                    <td>Zurich, CH</td>
+                    <td>€4.2B</td>
+                    <td><span style="color:var(--green);">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>Lord H. St. Clair-Morris</td>
+                    <td>UHNWI Co-Investor</td>
+                    <td>London, UK</td>
+                    <td>Alts · PE · Credit</td>
+                    <td><span style="color:var(--green);">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>Meridian Credit Partners</td>
+                    <td>GP — Private Credit</td>
+                    <td>Dublin, IE</td>
+                    <td>€1.8B AUM</td>
+                    <td><span style="color:var(--gold);">Pending IC</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- ── DOCUMENTS TAB ── -->
+          <div class="dash-tab" id="tab-documents">
+            <div class="dash-header">
+              <div class="dash-header-eyebrow">Confidential</div>
+              <h1 class="dash-header-title">Document <em>Vault</em></h1>
+              <p class="dash-header-sub">Secure access to investment documentation and due diligence materials</p>
+            </div>
+            <div class="data-table-wrap">
+              <div class="data-table-header">
+                <div class="data-table-title">Available Documents</div>
+                <button class="data-table-action">Upload Document</button>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Document</th>
+                    <th>Fund / Entity</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Access</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Northern Arc — IM v3.2</td>
+                    <td>European Buyout Fund IV</td>
+                    <td>Investment Memorandum</td>
+                    <td>14 Jan 2025</td>
+                    <td><span style="color:var(--gold);">NDA Required</span></td>
+                  </tr>
+                  <tr>
+                    <td>Q4 2024 IC Memo</td>
+                    <td>Investment Committee</td>
+                    <td>Committee Memo</td>
+                    <td>10 Jan 2025</td>
+                    <td><span style="color:var(--green);">Accessible</span></td>
+                  </tr>
+                  <tr>
+                    <td>Ashford — DDQ Response</td>
+                    <td>Global Macro Strategy</td>
+                    <td>Due Diligence</td>
+                    <td>8 Jan 2025</td>
+                    <td><span style="color:var(--green);">Accessible</span></td>
+                  </tr>
+                  <tr>
+                    <td>Platform NDA — 2025</td>
+                    <td>Global Investment Hub</td>
+                    <td>Legal Agreement</td>
+                    <td>1 Jan 2025</td>
+                    <td><span style="color:var(--green);">Signed</span></td>
+                  </tr>
+                  <tr>
+                    <td>Alpine Credit — Term Sheet</td>
+                    <td>Credit Opportunities III</td>
+                    <td>Term Sheet</td>
+                    <td>20 Dec 2024</td>
+                    <td><span style="color:var(--gold);">NDA Required</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- ── MESSAGES TAB ── -->
+          <div class="dash-tab" id="tab-messages">
+            <div class="dash-header">
+              <div class="dash-header-eyebrow">Secure Communications</div>
+              <h1 class="dash-header-title">Private <em>Messages</em></h1>
+              <p class="dash-header-sub">Encrypted communication with platform members</p>
+            </div>
+            <div class="dash-two-col">
+              <div class="dash-panel">
+                <div class="dash-panel-title">Inbox</div>
+                <ul class="activity-list">
+                  <li class="activity-item" style="cursor:pointer;">
+                    <div class="activity-dot" style="background:var(--green);"></div>
+                    <div style="flex:1;">
+                      <div class="activity-text"><strong>Northern Arc Capital</strong> — Updated IM for your review
+                      </div>
+                      <div class="activity-time">Today, 11:42</div>
+                    </div>
+                  </li>
+                  <li class="activity-item" style="cursor:pointer;">
+                    <div class="activity-dot"></div>
+                    <div style="flex:1;">
+                      <div class="activity-text"><strong>Investment Committee</strong> — Q4 memo distribution</div>
+                      <div class="activity-time">Yesterday, 09:15</div>
+                    </div>
+                  </li>
+                  <li class="activity-item" style="cursor:pointer;">
+                    <div class="activity-dot"></div>
+                    <div style="flex:1;">
+                      <div class="activity-text"><strong>Ashford Capital</strong> — DDQ completed, response attached
+                      </div>
+                      <div class="activity-time">3 days ago</div>
+                    </div>
+                  </li>
+                  <li class="activity-item" style="cursor:pointer;">
+                    <div class="activity-dot"></div>
+                    <div style="flex:1;">
+                      <div class="activity-text"><strong>Platform Secretariat</strong> — Annual membership renewal
+                        confirmation</div>
+                      <div class="activity-time">1 week ago</div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="dash-panel">
+                <div class="dash-panel-title">New Message</div>
+                <div class="form-group"><label class="form-label">To (Member / Entity)</label><input class="form-input"
+                    type="text" placeholder="Search members..."></div>
+                <div class="form-group"><label class="form-label">Subject</label><input class="form-input" type="text"
+                    placeholder="Re: Fund IV — Introduction request"></div>
+                <div class="form-group"><label class="form-label">Message</label><textarea class="form-input" rows="4"
+                    style="resize:vertical;" placeholder="Your message..."></textarea></div>
+                <button class="login-btn" style="margin-top:8px;">Send Encrypted Message</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── SETTINGS TAB ── -->
+          <div class="dash-tab" id="tab-settings">
+            <div class="dash-header">
+              <div class="dash-header-eyebrow">Account</div>
+              <h1 class="dash-header-title">Member <em>Settings</em></h1>
+              <p class="dash-header-sub">Manage your profile, preferences and security</p>
+            </div>
+            <div class="dash-two-col">
+              <div class="dash-panel">
+                <div class="dash-panel-title">Profile</div>
+                <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" type="text"
+                    id="settings-name-input"></div>
+                <div class="form-group"><label class="form-label">Organisation</label><input class="form-input"
+                    type="text" id="settings-org-input"></div>
+                <div class="form-group"><label class="form-label">Email Address</label><input class="form-input"
+                    type="email" value="member@institution.com"></div>
+                <div class="form-group"><label class="form-label">Membership Category</label><input class="form-input"
+                    type="text" id="settings-category-input" readonly></div>
+                <div class="form-group"><label class="form-label">Reporting Currency</label>
+                  <select class="form-input" style="appearance:none;cursor:pointer;">
+                    <option>EUR — Euro</option>
+                    <option>USD — US Dollar</option>
+                    <option>GBP — British Pound</option>
+                    <option>CHF — Swiss Franc</option>
+                  </select>
+                </div>
+                <button class="login-btn">Save Changes</button>
+              </div>
+              <div class="dash-panel">
+                <div class="dash-panel-title">Security</div>
+                <div class="form-group"><label class="form-label">Current Access Code</label><input class="form-input"
+                    type="password" placeholder="••••••••"></div>
+                <div class="form-group"><label class="form-label">New Access Code</label><input class="form-input"
+                    type="password" placeholder="••••••••"></div>
+                <div class="form-group"><label class="form-label">Confirm New Code</label><input class="form-input"
+                    type="password" placeholder="••••••••"></div>
+                <button class="login-btn">Update Security</button>
+                <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--gold-line);">
+                  <div
+                    style="font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--silver);margin-bottom:12px;">
+                    Session Management</div>
+                  <div style="font-size:11px;color:var(--silver);margin-bottom:16px;font-weight:300;">All sessions use
+                    256-bit encryption. Session timeout: 30 minutes inactive.</div>
+                  <button class="request-access-btn" style="width:100%;">Terminate All Sessions</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- dashboard-content -->
+      </main>
+    </div>
+  </div><!-- page-platform -->
+
+  <!-- ADVANCED FILTERS PANEL -->
+  <div class="filters-drawer-overlay" id="filters-drawer-overlay" onclick="toggleAdvancedFilters(false)"></div>
+  <aside class="filters-drawer" id="filters-drawer">
+    <div class="drawer-header">
+      <h3>Advanced Filters</h3>
+      <button class="drawer-close" onclick="toggleAdvancedFilters(false)">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <div class="drawer-filter-group">
+        <label for="filter-stage">Investment Stage</label>
+        <select id="filter-stage" onchange="handleAdvancedFilterChange('stage')">
+          <option value="">All Stages</option>
+          <option value="Pre-Seed">Pre-Seed</option>
+          <option value="Seed">Seed</option>
+          <option value="Series A">Series A</option>
+          <option value="Series B">Series B</option>
+          <option value="Growth">Growth</option>
+          <option value="Mature">Mature</option>
+        </select>
+      </div>
+
+      <div class="drawer-filter-group">
+        <label for="filter-income">Income Profile</label>
+        <select id="filter-income" onchange="handleAdvancedFilterChange('income')">
+          <option value="">All Profiles</option>
+          <option value="Accumulating">Accumulating</option>
+          <option value="Distributing">Distributing</option>
+        </select>
+      </div>
+
+      <div class="drawer-filter-group">
+        <label for="filter-liquidity">Liquidity Profile</label>
+        <select id="filter-liquidity" onchange="handleAdvancedFilterChange('liquidity')">
+          <option value="">All Profiles</option>
+          <option value="Daily">Daily</option>
+          <option value="Weekly">Weekly</option>
+          <option value="Monthly">Monthly</option>
+          <option value="Quarterly">Quarterly</option>
+          <option value="Annual">Annual</option>
+          <option value="Locked">Locked</option>
+        </select>
+      </div>
+
+      <div class="drawer-filter-group">
+        <label for="filter-risk">Risk Profile</label>
+        <select id="filter-risk" onchange="handleAdvancedFilterChange('risk')">
+          <option value="">All Profiles</option>
+          <option value="Conservative">Conservative</option>
+          <option value="Moderate">Moderate</option>
+          <option value="Growth">Growth</option>
+          <option value="Aggressive">Aggressive</option>
+          <option value="Opportunistic">Opportunistic</option>
+        </select>
+      </div>
+
+      <div class="drawer-filter-group">
+        <label for="filter-geography">Geographic Exposure</label>
+        <select id="filter-geography" onchange="handleAdvancedFilterChange('geography')">
+          <option value="">All Regions</option>
+          <option value="Global">Global</option>
+          <option value="North America">North America</option>
+          <option value="Europe">Europe</option>
+          <option value="Asia-Pacific">Asia-Pacific</option>
+          <option value="Latin America">Latin America</option>
+          <option value="Middle East">Middle East</option>
+          <option value="Africa">Africa</option>
+        </select>
+      </div>
+
+      <div class="drawer-filter-group">
+        <label for="filter-currency">Currency</label>
+        <select id="filter-currency" onchange="handleAdvancedFilterChange('currency')">
+          <option value="">All Currencies</option>
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+          <option value="GBP">GBP</option>
+          <option value="CHF">CHF</option>
+          <option value="BRL">BRL</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="drawer-filter-group">
+        <label for="filter-vintage">Vintage Year</label>
+        <select id="filter-vintage" onchange="handleAdvancedFilterChange('vintage')">
+          <option value="">All Vintages</option>
+        </select>
+      </div>
+    </div>
+    <div class="drawer-footer">
+      <button class="btn-drawer-reset" onclick="resetAllFilters()">Reset All</button>
+      <button class="btn-drawer-apply" onclick="toggleAdvancedFilters(false)">Apply Filters</button>
+    </div>
+  </aside>
+</body>
+
+</html>

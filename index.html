@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Investment Hub — Private Members Platform</title>
+  <meta name="description"
+    content="The Global Investment Hub connects discerning deal providers with institutional capital allocators and professional co-investors in a governed, verified environment.">
+  <meta property="og:title" content="Global Investment Hub — Private Members Platform">
+  <meta property="og:description"
+    content="Connecting discerning deal providers with institutional capital allocators in a governed, verified environment.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
+    rel="stylesheet">
+  <script src="script.js"></script>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════
+     PAGE 1: LANDING
+══════════════════════════════ -->
+  <div id="page-landing" class="page active">
+    <nav class="nav">
+      <a href="index.html" class="logo-link">
+        <div class="nav-logo">
+          <span class="nav-logo-main">Global Investment Hub</span>
+          <span class="nav-logo-sub">Private Members Platform · Est. 2024</span>
+        </div>
+      </a>
+      <div class="nav-divider"></div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#membership">Membership</a></li>
+      </ul>
+      <button class="nav-cta" onclick="window.location.href='login.html'">Access Platform</button>
+
+      <!-- Hamburger Toggle Icon -->
+      <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <!-- Mobile Navigation Overlay Drawer -->
+    <div class="nav-mobile-overlay" id="nav-mobile-overlay">
+      <button class="nav-mobile-close" onclick="toggleMobileMenu()">&times;</button>
+      <ul class="nav-mobile-links">
+        <li><a href="#about" onclick="toggleMobileMenu()">About</a></li>
+        <li><a href="#membership" onclick="toggleMobileMenu()">Membership</a></li>
+      </ul>
+      <button class="nav-mobile-cta" onclick="window.location.href='login.html'; toggleMobileMenu();">Access
+        Platform</button>
+    </div>
+
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-lines"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">Where Institutional</h1>
+        <div class="hero-title-second"><em>Capital Convenes</em></div>
+        <p class="hero-body">The Global Investment Hub is a curated
+          investment platform connecting discerning deal providers, with institutional capital allocators and
+          professional co-investors, through a rigorously governed, and verified environment.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="window.location.href='login.html'"><span>Access Platform</span></button>
+          <button class="btn-ghost" onclick="document.getElementById('membership').scrollIntoView()">Request
+            Membership</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee-wrap">
+      <div class="marquee">
+        <div class="marquee-item"><span class="marquee-text">Private Equity</span><span class="marquee-dot"></span>
+        </div>
+        <div class="marquee-item"><span class="marquee-text">Hedge Funds</span><span class="marquee-dot"></span></div>
+        <div class="marquee-item"><span class="marquee-text">Private Credit</span><span class="marquee-dot"></span>
+        </div>
+        <div class="marquee-item"><span class="marquee-text">Alternative Investments</span><span
+            class="marquee-dot"></span></div>
+        <div class="marquee-item"><span class="marquee-text">Co-Investment</span><span class="marquee-dot"></span></div>
+        <div class="marquee-item"><span class="marquee-text">Fund of Funds</span><span class="marquee-dot"></span></div>
+        <div class="marquee-item"><span class="marquee-text">Infrastructure</span><span class="marquee-dot"></span>
+        </div>
+        <div class="marquee-item"><span class="marquee-text">Secondaries</span><span class="marquee-dot"></span></div>
+        <div class="marquee-item"><span class="marquee-text">Venture Capital</span><span class="marquee-dot"></span>
+        </div>
+        <div class="marquee-item"><span class="marquee-text">Real Assets</span><span class="marquee-dot"></span></div>
+        <div class="marquee-item"><span class="marquee-text">Private Equity</span><span class="marquee-dot"></span>
+        </div>
+        <div class="marquee-item"><span class="marquee-text">Hedge Funds</span><span class="marquee-dot"></span></div>
+        <div class="marquee-item"><span class="marquee-text">Private Credit</span><span class="marquee-dot"></span>
+        </div>
+        <div class="marquee-item"><span class="marquee-text">Alternative Investments</span><span
+            class="marquee-dot"></span></div>
+        <div class="marquee-item"><span class="marquee-text">Co-Investment</span><span class="marquee-dot"></span></div>
+        <div class="marquee-item"><span class="marquee-text">Fund of Funds</span><span class="marquee-dot"></span></div>
+        <div class="marquee-item"><span class="marquee-text">Infrastructure</span><span class="marquee-dot"></span>
+        </div>
+        <div class="marquee-item"><span class="marquee-text">Secondaries</span><span class="marquee-dot"></span></div>
+        <div class="marquee-item"><span class="marquee-text">Venture Capital</span><span class="marquee-dot"></span>
+        </div>
+        <div class="marquee-item"><span class="marquee-text">Real Assets</span><span class="marquee-dot"></span></div>
+      </div>
+    </div>
+
+    <section class="section" id="about">
+      <div class="section-inner">
+        <div class="section-label">
+          <div class="section-label-line"></div>
+          <span class="section-label-text">About the Hub</span>
+        </div>
+        <div class="two-col">
+          <div>
+            <h2 class="section-title">Not a marketplace.<br><em>A private chamber.</em></h2>
+            <div class="two-col-text">
+              <p>The Global Investment Hub is a curated professional investment platform connecting the world's
+                most discerning deal providers with institutional-grade capital allocators and co-investors.</p>
+              <p>We operate within a rigorous governance framework: every member is carefully verified, every
+                opportunity is reviewed by our Committee, and every interaction is protected by institutional grade
+                confidentiality standards.</p>
+              <p>The Global Investment Hub is a private environment where serious capital meets serious
+                opportunities with the institutional framework this calibre of investment requires.</p>
+            </div>
+          </div>
+          <div class="two-col-stats">
+            <div class="stat-box">
+              <div class="stat-num" data-target="4.2" data-prefix="$" data-suffix="B">0</div>
+              <div class="stat-label">Capital Under Review</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num" data-target="180" data-suffix="+">0</div>
+              <div class="stat-label">Qualified Members</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num" data-target="42">0</div>
+              <div class="stat-label">Active Mandates</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num" data-target="28">0</div>
+              <div class="stat-label">Jurisdictions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <section class="membership-section" id="membership">
+      <div class="section-inner">
+        <div class="section-label">
+          <div class="section-label-line"></div>
+          <span class="section-label-text">Membership Categories</span>
+        </div>
+        <h2 class="section-title">Three categories.<br><em>One standard.</em></h2>
+        <div class="membership-grid">
+          <div class="membership-card" onclick="window.location.href='login.html?role=allocator'">
+            <span class="card-roman">I</span>
+            <div class="card-title">Capital Allocators</div>
+            <div class="card-subtitle">INSTITUTIONAL PARTNERS</div>
+            <div class="card-divider"></div>
+            <div class="card-body">Multi-Family Offices, Private Banks, and Wealth Managers who deploy capital on behalf
+              of HNWI and UHNWI clients.</div>
+            <ul class="card-includes">
+              <li>Full deal catalogue access</li>
+              <li>Co-investment mandate management</li>
+              <li>Institutional analytics dashboard</li>
+              <li>Investment Committee briefings</li>
+              <li>Co-branded distribution rights</li>
+            </ul>
+          </div>
+          <div class="membership-card" onclick="window.location.href='login.html?role=provider'">
+            <span class="card-roman">II</span>
+            <div class="card-title">Deal Providers</div>
+            <div class="card-subtitle">GENERAL PARTNERS & ASSET MANAGERS</div>
+            <div class="card-divider"></div>
+            <div class="card-body">Venture Capital, Private Equity & Credit, Hedge Funds, Listed Securities Funds, and
+              Alternative Investment Funds providers who bring institutional-grade opportunities to the platform.</div>
+            <ul class="card-includes">
+              <li>Deal origination & structuring</li>
+              <li>Distribution to qualified LPs</li>
+              <li>Syndication workflow tools</li>
+              <li>Capital partner matching</li>
+              <li>Fund documentation management</li>
+            </ul>
+          </div>
+          <div class="membership-card" onclick="window.location.href='login.html?role=investor'">
+            <span class="card-roman">III</span>
+            <div class="card-title">Professional Investors</div>
+            <div class="card-subtitle">INDEPENDENT CO-INVESTORS</div>
+            <div class="card-divider"></div>
+            <div class="card-body">Single-Family Offices, Ultra-High-Net-Worth Individuals, and qualified independent
+              investors who co-invest alongside institutional partners.</div>
+            <ul class="card-includes">
+              <li>Validated co-investment access</li>
+              <li>Investment documentation</li>
+              <li>Institutional partner network</li>
+              <li>Exclusive deal flow</li>
+              <li>Private events & briefings</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section class="process-section" id="process">
+      <div class="section-inner">
+        <div class="section-label">
+          <div class="section-label-line"></div>
+          <span class="section-label-text">Membership Process</span>
+        </div>
+        <h2 class="section-title">Access is <em>earned,</em><br>not purchased.</h2>
+        <div class="process-grid">
+          <div class="process-step">
+            <div class="process-step-num">01</div>
+            <div class="process-step-label">Step One</div>
+            <div class="process-step-title">Application & Introduction</div>
+            <div class="process-step-body">Submit a confidential membership application. Each candidate is reviewed
+              individually by our membership committee.</div>
+          </div>
+          <div class="process-step">
+            <div class="process-step-num">02</div>
+            <div class="process-step-label">Step Two</div>
+            <div class="process-step-title">KYC / KYB Verification</div>
+            <div class="process-step-body">Institutional-grade identity, accreditation, and suitability verification.
+              All documentation held under strict NDA.</div>
+          </div>
+          <div class="process-step">
+            <div class="process-step-num">03</div>
+            <div class="process-step-label">Step Three</div>
+            <div class="process-step-title">Committee Approval</div>
+            <div class="process-step-body">Review by the Investment Committee. Role, rights, and access level are
+              formally assigned and agreed.</div>
+          </div>
+          <div class="process-step">
+            <div class="process-step-num">04</div>
+            <div class="process-step-label">Step Four</div>
+            <div class="process-step-title">Platform Activation</div>
+            <div class="process-step-body">Secure dashboard access is granted. A private onboarding session ensures full
+              familiarity with the platform and network.</div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <section class="section" id="contact">
+      <div class="section-innerOne">
+        <div class="section-label">
+          <div class="section-label-line"></div>
+          <span class="section-label-text">Request an Introduction</span>
+        </div>
+        <h2 class="section-title">Begin a <em>confidential</em> conversation.</h2>
+        <p class="two-col-text" style="margin-bottom:48px;">Submit your details below and a member of
+          our committee will respond under strict confidentiality.</p>
+        <form id="contact-form" style="max-width:640px;">
+          <div class="form-group">
+            <label class="form-label" for="contact-name">Full Name</label>
+            <input class="form-input" type="text" id="contact-name" name="name" placeholder="Your full name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-email">Email</label>
+            <input class="form-input" type="email" id="contact-email" name="email" placeholder="your@institution.com"
+              required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-org">Organization</label>
+            <input class="form-input" type="text" id="contact-org" name="organization"
+              placeholder="Institution / Entity">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-message">Message</label>
+            <textarea class="form-input" id="contact-message" name="message" rows="4"
+              placeholder="How can we assist you?" style="resize:vertical;min-height:110px;"></textarea>
+          </div>
+          <label class="form-check" style="align-items:flex-start;margin-bottom:14px;">
+            <input type="checkbox" id="newsletter-optin" name="newsletter">
+            <span class="form-check-label" style="font-size:11px;color:var(--silver);line-height:1.6;">I would like to
+              subscribe to The Global Investment Hub's curated newsletter.</span>
+          </label>
+          <label class="form-check" style="align-items:flex-start;margin-bottom:28px;">
+            <input type="checkbox" id="terms-consent" name="consent" required>
+            <span class="form-check-label" style="font-size:11px;color:var(--silver);line-height:1.6;">I confirm that I
+              have read and agree with the
+              <a href="https://theglobalinvestmenthub.com/terms" target="_blank" rel="noopener"
+                style="color:var(--gold);text-decoration:underline;">Terms &amp; Conditions</a> and
+              <a href="https://theglobalinvestmenthub.com/privacy" target="_blank" rel="noopener"
+                style="color:var(--gold);text-decoration:underline;">Privacy Policy</a>.</span>
+          </label>
+          <div>
+            <button class="btn-primary" type="submit" id="contact-submit"><span>Submit Enquiry</span></button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="logo-link">
+            <span class="footer-logo-main">Global Investment Hub</span>
+            <span class="footer-logo-sub">Private Members Platform</span>
+          </a>
+          <p class="footer-desc">Rigorously governed environment connecting discerning deal providers, institutional
+            capital allocators, and co-investors.</p>
+        </div>
+        <div class="footer-links-col">
+          <div class="footer-col-title">Platform</div>
+          <a href="login.html" class="footer-link">Access Platform</a>
+          <a href="index.html#contact" class="footer-link">Request Membership</a>
+        </div>
+        <div class="footer-links-col">
+          <div class="footer-col-title">Information</div>
+          <a href="index.html#about" class="footer-link">About the Hub</a>
+          <a href="index.html#membership" class="footer-link">Membership Categories</a>
+        </div>
+        <div class="footer-links-col">
+          <div class="footer-col-title">Contact</div>
+          <a href="mailto:compliance@globalinvestmenthub.com" class="footer-link">Compliance Office</a>
+          <a href="mailto:committee@globalinvestmenthub.com" class="footer-link">Investment Committee</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          Restricted to qualified professional investors only. Not a public offering.<br>
+          All information is confidential and governed by applicable NDA agreements.<br>
+          © 2026 Global Investment Hub. All rights reserved.
+        </div>
+        <div class="footer-ecosystem">
+          Part of the <span>EquusChain</span><br>ecosystem infrastructure
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Custom Mouse Cursor -->
+  <div class="custom-cursor" id="custom-cursor">
+    <div class="cursor-dot">G</div>
+    <div class="cursor-ring"></div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Access — Global Investment Hub</title>
+  <meta name="description" content="Secure access for verified members of the Global Investment Hub. All sessions are encrypted, logged, and monitored.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
+    rel="stylesheet">
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <!-- ══════════════════════════════
+     PAGE 2: LOGIN (STANDALONE)
+══════════════════════════════ -->
+  <div id="page-login" class="page active">
+    <div class="login-page">
+      <div class="login-left">
+        <div class="login-left-lines"></div>
+        <div class="login-left-content">
+          <div class="login-brand">
+            <a href="index.html" class="logo-link">
+              <span class="login-brand-name">Global Investment Hub</span>
+              <span class="login-brand-sub">Private Members Platform</span>
+            </a>
+          </div>
+          <h2 class="login-headline">The chamber<br>of <em>institutional</em><br>capital.</h2>
+          <p class="login-sub">Secure access for verified members only. All sessions are encrypted, logged, and governed
+            under your membership agreement.</p>
+        </div>
+      </div>
+      <div class="login-right">
+        <!-- 1. SIGN IN FORM -->
+        <div class="login-form-wrap" id="login-form-container">
+          <div class="login-form-title">Member Access</div>
+          <div class="login-form-sub">Select your membership category to proceed</div>
+          <div class="role-selector">
+            <button class="role-btn active" id="role-btn-allocator"
+              onclick="selectRole('allocator')">Capital<br>Allocator</button>
+            <button class="role-btn" id="role-btn-provider" onclick="selectRole('provider')">Deal<br>Provider</button>
+            <button class="role-btn" id="role-btn-investor" onclick="selectRole('investor')">Co-<br>Investor</button>
+          </div>
+          <div id="login-error" style="color:var(--red);font-size:11px;margin-bottom:14px;display:none;"></div>
+          <div class="form-group">
+            <label class="form-label">Member ID / Email</label>
+            <input class="form-input" type="email" placeholder="your@institution.com" id="login-email">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Access Code</label>
+            <input class="form-input" type="password" placeholder="••••••••••" id="login-password">
+          </div>
+          <div class="form-row">
+            <label class="form-check">
+              <input type="checkbox" checked>
+              <span class="form-check-label">Secure session</span>
+            </label>
+            <button class="form-forgot" onclick="alert('Please contact the Compliance Administrator at admin@hub.com for credential recovery.')">Recover access</button>
+          </div>
+          <button class="login-btn" onclick="doLogin()">Enter Platform</button>
+          <div class="login-divider">
+            <div class="login-divider-line"></div>
+            <span class="login-divider-text">Not a member?</span>
+            <div class="login-divider-line"></div>
+          </div>
+          <button class="request-access-btn" onclick="showRegister()">Register for Access</button>
+          <div style="text-align:center;margin-top:24px;">
+            <button onclick="window.location.href='index.html'"
+              style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--iron);background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;">←
+              Return to site</button>
+          </div>
+        </div>
+
+        <!-- 2. REGISTRATION FORM -->
+        <div class="login-form-wrap" id="register-form-container" style="display:none;">
+          <div class="login-form-title">Membership Registration</div>
+          <div class="login-form-sub">Apply for secure platform credentials</div>
+          <div id="register-error" style="color:var(--red);font-size:11px;margin-bottom:14px;display:none;"></div>
+          <div id="register-success" style="color:var(--green);font-size:11px;margin-bottom:14px;display:none;"></div>
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input class="form-input" type="text" placeholder="John Doe" id="register-name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Institutional Email</label>
+            <input class="form-input" type="email" placeholder="john@institution.com" id="register-email" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Institution / Entity Name</label>
+            <input class="form-input" type="text" placeholder="Family Office / GP Name" id="register-org" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Membership Category</label>
+            <div class="role-selector" id="register-role-selector" style="margin-bottom:0px;">
+              <button class="role-btn active" id="reg-role-allocator" onclick="selectRegisterRole('allocator')">Capital<br>Allocator</button>
+              <button class="role-btn" id="reg-role-provider" onclick="selectRegisterRole('provider')">Deal<br>Provider</button>
+              <button class="role-btn" id="reg-role-investor" onclick="selectRegisterRole('investor')">Co-<br>Investor</button>
+            </div>
+          </div>
+          <div class="form-group" style="margin-top:20px;">
+            <label class="form-label">Set Access Code (Password)</label>
+            <input class="form-input" type="password" placeholder="••••••••••" id="register-password" required>
+          </div>
+          <button class="login-btn" onclick="submitRegistration()">Submit Registration</button>
+          <div style="text-align:center;margin-top:24px;">
+            <button onclick="showLoginSection()"
+              style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;">←
+              Back to Sign In</button>
+          </div>
+        </div>
+
+        <!-- 3. PENDING STATUS NOTICE -->
+        <div class="login-form-wrap" id="status-form-container" style="display:none; text-align: center;">
+          <div class="login-form-title" style="color:var(--gold);">Registration Pending</div>
+          <div class="login-form-sub" style="margin-bottom:24px;">Compliance Committee Review Required</div>
+          <div style="background: rgba(201, 169, 110, 0.05); border: 1px solid var(--gold-line); padding: 20px; border-radius: 4px; margin-bottom: 24px; text-align: left; line-height: 1.6; font-size: 13px; color: var(--silver);">
+            <p style="margin-bottom: 12px; color: var(--ivory);">Dear <strong id="status-user-name">Applicant</strong>,</p>
+            <p style="margin-bottom: 12px;">Thank you for registering. Your account for <strong id="status-user-email">email</strong> is currently in <strong style="color: var(--gold);">Pending</strong> status.</p>
+            <p>The Global Investment Hub's Compliance Committee is reviewing your suitability credentials. You will gain platform access as soon as your account is approved.</p>
+          </div>
+          <button class="login-btn" onclick="showLoginSection()">Return to Login</button>
+          <p style="font-size: 10px; color: var(--iron); margin-top: 24px;">To simulate approval, log in as administrator: <br><strong style="color:var(--silver);">admin@hub.com</strong> / <strong style="color:var(--silver);">admin</strong></p>
+        </div>
+
+        <!-- 4. ADMIN APPROVAL PANEL -->
+        <div class="login-form-wrap" id="admin-form-container" style="display:none;">
+          <div class="login-form-title" style="color:var(--gold);">Compliance Admin Panel</div>
+          <div class="login-form-sub">Approve or reject pending member registrations</div>
+          <div id="admin-notice" style="color:var(--green);font-size:11px;margin-bottom:14px;display:none;"></div>
+          <div style="max-height: 300px; overflow-y: auto; margin-bottom: 24px; border: 1px solid var(--gold-line); background: rgba(0,0,0,0.2); border-radius: 4px; padding: 12px;" id="admin-users-list">
+            <!-- Dynamic pending users list -->
+          </div>
+          <button class="login-btn" onclick="showLoginSection()">Exit Admin Panel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
