@@ -45,8 +45,6 @@ body {
 
 p,
 .two-col-text,
-.hero-body,
-.card-body,
 .login-sub,
 .footer-desc {
     text-align: justify;
@@ -268,13 +266,14 @@ html,
 .hero-body {
     max-width: 640px;
     margin-inline: auto;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 2;
     color: var(--silver);
     margin-bottom: 52px;
     font-weight: 300;
     opacity: 0;
     animation: fadeUp 1s ease 0.9s forwards;
+    text-align: center;
 }
 
 .hero-actions {
@@ -502,7 +501,7 @@ html,
 }
 
 .two-col-text {
-    font-size: 13px;
+    font-size: 14px;
     line-height: 2;
     color: var(--silver);
     font-weight: 300;
@@ -634,7 +633,7 @@ html,
 }
 
 .card-body {
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.9;
     color: var(--silver);
     font-weight: 300;
@@ -714,7 +713,7 @@ html,
 }
 
 .process-step-body {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--silver);
     line-height: 1.9;
     font-weight: 300;
