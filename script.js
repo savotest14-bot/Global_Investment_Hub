@@ -838,11 +838,26 @@ function configureDashboard(role) {
   }
 
   // Settings
+  const sessionUser = sessionStorage.getItem('currentUser');
+  let displayName = cfg.name;
+  let displayOrg = cfg.org;
+  let displayEmail = 'member@institution.com';
+
+  if (sessionUser) {
+    const userObj = JSON.parse(sessionUser);
+    if (userObj.name) displayName = userObj.name;
+    if (userObj.org) displayOrg = userObj.org;
+    if (userObj.email) displayEmail = userObj.email;
+  }
+
   const settingsName = document.getElementById('settings-name-input');
-  if (settingsName) settingsName.value = cfg.name;
+  if (settingsName) settingsName.value = displayName;
 
   const settingsOrg = document.getElementById('settings-org-input');
-  if (settingsOrg) settingsOrg.value = cfg.org;
+  if (settingsOrg) settingsOrg.value = displayOrg;
+
+  const settingsEmail = document.getElementById('settings-email-input');
+  if (settingsEmail) settingsEmail.value = displayEmail;
 
   const settingsCategory = document.getElementById('settings-category-input');
   if (settingsCategory) settingsCategory.value = cfg.badge;
@@ -852,6 +867,21 @@ function configureDashboard(role) {
 function setTab(tabId) {
   const targetTab = document.getElementById('tab-' + tabId);
   if (!targetTab) return;
+
+  // Update URL hash without reloading the page
+  if (window.location.hash.substring(1) !== tabId) {
+    window.location.hash = tabId;
+  }
+
+  // Avoid redundant execution if already active
+  if (targetTab.classList.contains('active')) {
+    const button = Array.from(document.querySelectorAll('.sidebar-nav button')).find(
+      b => b.getAttribute('onclick') === `setTab('${tabId}')`
+    );
+    if (!button || button.classList.contains('active')) {
+      return;
+    }
+  }
 
   document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.sidebar-nav button, .sidebar-nav a').forEach(b => b.classList.remove('active'));
@@ -1424,13 +1454,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const user = JSON.parse(sessionUser);
     currentRole = user.role;
     configureDashboard(user.role);
-    setTab('dashboard');
+
+    // Read initial tab from URL hash if present
+    const hashTab = window.location.hash.substring(1);
+    const initialTab = (hashTab && document.getElementById('tab-' + hashTab)) ? hashTab : 'dashboard';
+    setTab(initialTab);
+
     setTimeout(initCharts, 100);
 
     // Initialize Catalogue Filters & Vintage Options
     updateStrategyDropdown();
     updateVintageDropdown();
     renderCatalog();
+
+    // Listen for back/forward browser navigation
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.substring(1);
+      if (hash && document.getElementById('tab-' + hash)) {
+        setTab(hash);
+      }
+    });
   } else if (isLoginPage) {
     initUserAccounts();
     const activeRole = roleParam && roles[roleParam] ? roleParam : 'allocator';

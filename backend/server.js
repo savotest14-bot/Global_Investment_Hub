@@ -92,7 +92,7 @@ app.post('/api/enquiry', async (req, res) => {
           <p style="margin: 0; font-size: 12px; font-style: italic; color: #8a8a8a; line-height: 1.5;">This transmission contains confidential information intended solely for the recipient. Any unauthorized disclosure, dissemination, or distribution of this communication is strictly prohibited.</p>
         </div>
         <hr style="border: none; border-top: 1px solid rgba(201, 169, 110, 0.15); margin: 25px 0;">
-        <p style="font-size: 11px; color: #8a8a8a; margin-bottom: 0; line-height: 1.5;">© 2026 Global Investment Hub. Private Members Platform.<br>Restricted to qualified professional investors only. Not a public offering.</p>
+        <p style="font-size: 11px; color: #8a8a8a; margin-bottom: 0; line-height: 1.5;">© 2026 The Global Investment Hub. Private Members Platform.<br>Restricted to qualified professional investors only. Not a public offering.</p>
       </div>
     `
   };
@@ -111,5 +111,5 @@ app.post('/api/enquiry', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Global Investment Hub Backend listening on port ${PORT}`);
+  console.log(`The Global Investment Hub Backend listening on port ${PORT}`);
 });

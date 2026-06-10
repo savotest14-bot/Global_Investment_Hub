@@ -43,6 +43,15 @@ body {
     overflow-x: hidden;
 }
 
+p,
+.two-col-text,
+.hero-body,
+.card-body,
+.login-sub,
+.footer-desc {
+    text-align: justify;
+}
+
 body::before {
     content: '';
     position: fixed;
@@ -116,7 +125,7 @@ html,
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
     font-weight: 500;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.1em;
     color: var(--cream);
     text-transform: uppercase;
 }
@@ -432,7 +441,7 @@ html,
 
 /* ── SECTIONS ── */
 .section {
-    padding: 140px 60px;
+    padding: 100px 60px;
     position: relative;
 }
 
@@ -705,7 +714,7 @@ html,
 }
 
 .process-step-body {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--silver);
     line-height: 1.9;
     font-weight: 300;
@@ -742,7 +751,7 @@ footer {
     font-family: 'Cormorant Garamond', serif;
     font-size: 20px;
     font-weight: 500;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.1em;
     color: var(--white);
     text-transform: uppercase;
     display: block;
@@ -798,6 +807,11 @@ footer {
     color: var(--silver);
     line-height: 1.8;
     text-align: left;
+    flex: 3;
+}
+
+.footer-copyright {
+    color: var(--gold);
 }
 
 .footer-ecosystem {
@@ -806,6 +820,7 @@ footer {
     color: var(--silver);
     text-align: right;
     line-height: 1.6;
+    flex: 1;
 }
 
 .footer-ecosystem span {
@@ -985,6 +1000,13 @@ footer {
     font-weight: 300;
     outline: none;
     transition: border-color 0.3s;
+}
+
+.form-input[readonly] {
+    background: rgba(26, 26, 26, 0.4);
+    border-color: rgba(156, 156, 156, 0.15);
+    color: var(--silver);
+    cursor: not-allowed;
 }
 
 .form-input:focus {
@@ -3898,10 +3920,13 @@ tbody td:first-child {
 }
 
 @keyframes cursorPulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
         opacity: 0.6;
     }
+
     50% {
         transform: scale(1.5);
         opacity: 0;
@@ -3938,6 +3963,7 @@ tbody td:first-child {
 }
 
 @media (min-width: 993px) {
+
     body.landing-cursor-active,
     body.landing-cursor-active a,
     body.landing-cursor-active button,
